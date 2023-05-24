@@ -48,14 +48,14 @@
                     <li><a href="javascript:void(0);" id="updateUser" class="page_navs" data-page="deliveryList"><i class="fas fa-coins"></i> Delivery Reports</a></li> -->
                 </ul>
             </li>
-            <li><a href="javascript:void(0);" class="guestMenu allMenus" title="manage accomodations"><span><i class="fas fa-users"></i> Guests </span><span><i class="fas fa-chevron-down"></i></span></a>
+            <li style="margin:0 0 100px 0!important"><a href="javascript:void(0);" class="guestMenu allMenus" title="manage accomodations"><span><i class="fas fa-users"></i> Guests </span><span><i class="fas fa-chevron-down"></i></span></a>
                 <ul class="nav3Menu">
                     <li><a href="javascript:void(0)" onclick="showPage('manage_guests.php')" title="Manage guest types"><i class="fas fa-user-tie"></i> Manage guests</a></li>
                     <li><a href="javascript:void(0)" onclick="showPage('guest_list.php')" title="List of guests"><i class="fas fa-users"></i> Guest List</a></li>
                     <!-- <li><a href="javascript:void(0)" onclick="showPage('confirm_guest.php')" title="Confirm guests payment"><i class="fas fa-users"></i> Confirm Guest payment</a></li> -->
                 </ul>
             </li>
-            <li><a href="../controller/get_paid_members.php" id="upLoadMem" class="page_navs" data-page="connect to pharmagateway"><i class="fas fa-users"></i> get paid members</a></li>
+            <!-- <li><a href="../controller/get_paid_members.php" id="upLoadMem" class="page_navs" data-page="connect to pharmagateway"><i class="fas fa-users"></i> get paid members</a></li> -->
             <?php }?>
         </ul>
     </nav>

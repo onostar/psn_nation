@@ -207,26 +207,32 @@
                                     <label for="tech_group">Technical Group</label>
                                     <select name="tech_group" id="tech_group" required>
                                     <option value=""selected>Select technical group</option>
-                                    <option value="PSN-YPG">PSN-YPG</option>
                                     <option value="ACPN">ACPN</option>
                                     <option value="NAPA">NAPA</option>
                                     <option value="NAIP">NAIP</option>
-                                    <option value="ALPS">ALPS</option>
-                                    <option value="CPAN">CPAN</option>
                                     <option value="AHAPN">AHAPN</option>
                                     </select>
                                 </div>
+                                <div class="data">
+                                    <label for="interest_group">Interest Group</label>
+                                    <select name="interest_group" id="interest_group" required>
+                                    <option value=""selected>Select Interest group</option>
+                                    <option value="ALPS">ALPS</option>
+                                    <option value="CPAN">CPAN</option>
+                                    <option value="CPFN">CPFN</option>
+                                    <option value="MPAN">MPAN</option>
+                                    <option value="YPG">YPG</option>
+                                    <option value="PWDAN">PWDAN</option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                            <div class="inputs">
                                 <div class="update_btn data">
                                     <button type="submit" id="update" name="update">Update Profile <i class="fas fa-user"></i></button>
                                 </div>
                             </div>
                             
-                            
-                                <!-- <div class="inputs">
-                                    <div class="proceed">
-                                        <a href="user.php" title="Proceed to dashboard">Proceed <i class="fas fa-angle-double-right"></i></a>
-                                    </div>
-                                </div> -->
                                 
                             
                         </form>

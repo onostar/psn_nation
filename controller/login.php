@@ -20,9 +20,9 @@
         if($get_user->rowCount() > 0){
             
             $_SESSION['user'] = $pcn;
-            if($username === "Admin"){
+            if($username === "Admin" && $pcn == 123456){
                 header("Location: ../views/admin.php");
-            }elseif($username === "User"){
+            }elseif($username === "User" && $pcn == 222222){
                 header("Location: ../views/admin.php");
             }else{
                 //check image
@@ -33,7 +33,7 @@
                 $passport = $row->passport;
                 if(empty($passport)){
 
-                    $_SESSION['reg_success'] = "$passport Complete your registration! \r\n ";
+                    $_SESSION['reg_success'] = "Update your information to Complete your registration! \r\n ";
                     header("Location: ../views/welcome_page.php");
                 }else{
                     header("Location: ../views/user.php");
@@ -109,7 +109,7 @@
                 //check of object returned pharmacist data
                 if($response_data['success'] != 1){
                     // print_r ($response_data);
-                    $_SESSION['error'] = "Your capitation for the year ".date("Y")." has not been captured.<br> Kindly contact the numbers below for more details.<br>+2347012345678";
+                    $_SESSION['error'] = "Your capitation for the year ".date("Y")." has not been captured.<br> Kindly contact the numbers below for more details.<br>+2348133635650";
                     header("Location: ../views/registration.php");
                 }else{
                 
@@ -131,6 +131,7 @@
                     //convert full details string to array
                     $details_array = explode(" ", $full_details);
                     $last_name = $details_array[0];
+                    $last_name = trim($last_name, ",");
                     $first_name = $details_array[1];
                     //insert into paid members
                     $data = $connectdb->prepare("INSERT INTO paid_members(pcn_number, user_email, last_name, first_name) VALUES (:pcn_number, :user_email, :last_name, :first_name)");

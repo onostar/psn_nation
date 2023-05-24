@@ -21,6 +21,7 @@
         $user_type  = "Delegate";
         $country  = "Nigeria";
         $group = htmlspecialchars(stripslashes($_POST['tech_group']));
+        $int_group = htmlspecialchars(stripslashes($_POST['interest_group']));
         $passport = $_FILES['passport']['name'];
         $passport_folder = "../passports/".$passport;
         $id = $_POST['user_id'];
@@ -51,7 +52,7 @@
         if(move_uploaded_file($_FILES['passport']['tmp_name'], $passport_folder)){
             
             // update values
-            $update_profile = $connectdb->prepare("UPDATE users SET first_name = :first_name, last_name = :last_name, whatsapp = :whatsapp, other_number = :other_number, res_state = :res_state, user_email = :user_email, passport = :passport, reg_number = :reg_number, gender = :gender, tech_group = :tech_group, user_type = :user_type, country = :country, barcode = :barcode WHERE user_id = :user_id");
+            $update_profile = $connectdb->prepare("UPDATE users SET first_name = :first_name, last_name = :last_name, whatsapp = :whatsapp, other_number = :other_number, res_state = :res_state, user_email = :user_email, passport = :passport, reg_number = :reg_number, gender = :gender, tech_group = :tech_group, interest_group = :interest_group, user_type = :user_type, country = :country, barcode = :barcode WHERE user_id = :user_id");
             $update_profile->bindvalue("first_name", $first_name);
             $update_profile->bindvalue("last_name", $last_name);
             $update_profile->bindvalue("whatsapp", $whatsapp);
@@ -62,6 +63,7 @@
             $update_profile->bindvalue("reg_number", $reg_number);
             $update_profile->bindvalue("gender", $gender);
             $update_profile->bindvalue("tech_group", $group);
+            $update_profile->bindvalue("interest_group", $int_group);
             $update_profile->bindvalue("user_type", $user_type);
             $update_profile->bindvalue("country", $country);
             $update_profile->bindvalue("barcode", $barcode_num);

@@ -15,6 +15,9 @@
         <button onclick="filterRegistration('tech_group')"><i class="fas fa-users"></i> Technical Groups</button>
     </div>
     <div class="user_types">
+        <button onclick="filterRegistration('interest_group')"><i class="fas fa-users"></i> Interest Groups</button>
+    </div>
+    <div class="user_types">
         <button onclick="filterRegistration('guest_type')"><i class="fas fa-users"></i> Guest type</button>
     </div>
     

@@ -46,7 +46,7 @@
         <header id="mainHeader" class="main_header">
             <h1>
                 <a href="index.php">
-                    <img src="images/psn_logo2.png" alt="logo">
+                    <img src="images/conference_logo.png" alt="logo">
                 </a>
             </h1>
             <nav id="navigation">
@@ -127,7 +127,18 @@
         </div> -->
     </section>
 </div>
-
+<!-- display login information -->
+    <div class="flash_info" id="flashInfo">
+        <div class="flash_main">
+            <h2>Login Instruction</h2>
+            <div class="flash_img">
+                <img src="images/conference_logo.png" alt="logo">
+            </div>
+            <p><strong style="color:red">Please Note!</strong> All Registered Pharmacists in Nigeria should click on the <strong>"Delegate"</strong> button to login or register.<br> While pharmacists in diaspora, accompanied persons, NYSC, Interns, etc should click on the <strong>"Guest"</strong> button to login or register</p>
+            <p id="last_child">We look forward to seeing you at Jewel city 2023!</p>
+            <button onclick="closeInfo()">Close <i class="fas fa-window-close"></i></button>
+        </div>
+    </div>
     <script src="jquery.js"></script>
     <script src="script.js"></script>
 </body>

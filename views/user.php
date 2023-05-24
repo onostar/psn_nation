@@ -155,7 +155,7 @@
                         <div class="logos">
                         <?php }?>
                             <img src="../images/conference_logo.png" alt="PSN logo">
-                            <P>Jewell city 2023</P>
+                            <P>Jewel city 2023</P>
                         </div>
                         <div class="slip">
                             <div class="slip_back">

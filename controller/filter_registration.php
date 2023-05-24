@@ -12,6 +12,8 @@
             echo "Technical Group";
         }elseif($filter == "res_state"){
             echo "State";
+        }elseif($filter == "interest_group"){
+            echo "Interest Group";
         }elseif($filter == "user_type"){
             echo "User type";
         }else{

@@ -1180,13 +1180,15 @@ function attendEvent(event_id, user_id){
         $("#user").focus();
         return;
     }else{
-        $.ajax({
-            type : "GET",
-            url : "../controller/attend_event.php?event="+event+"&user="+user,
-            success : function(response){
-                $(".user_info").html(response);
-            }
-        })
+        if(user.length >= 6){
+            $.ajax({
+                type : "GET",
+                url : "../controller/attend_event.php?event="+event+"&user="+user,
+                success : function(response){
+                    $(".user_info").html(response);
+                }
+            })
+        }
     }
     /* setTimeout(function(){
         $("#events").load("events.php #events");
@@ -1198,17 +1200,19 @@ function validate(user_id){
     // let event = event_id;
     let user = user_id;
     if(user.length == 0 || user.replace(/^\s+|\s+$/g, "").length == 0){
-        alert("Please enter barcode!");
+        alert("Please enter barcode or pcn!");
         $("#user").focus();
         return;
     }else{
-        $.ajax({
-            type : "GET",
-            url : "../controller/onsite_validation.php?user="+user,
-            success : function(response){
-                $(".user_info").html(response);
-            }
-        })
+        if(user.length >= 6){
+            $.ajax({
+                type : "GET",
+                url : "../controller/onsite_validation.php?user="+user,
+                success : function(response){
+                    $(".user_info").html(response);
+                }
+            })
+        }
     }
     /* setTimeout(function(){
         $("#events").load("events.php #events");
@@ -1458,4 +1462,12 @@ function addExhibitor(){
         $("#booth_id").val('');
         return false;
     }
+}
+//display information
+setTimeout(function(){
+    document.getElementById("flashInfo").style.display = "block";
+}, 10000);
+// close information
+function closeInfo(){
+    document.getElementById("flashInfo").style.display = "none";
 }

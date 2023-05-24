@@ -5,12 +5,13 @@
 
     $user = $_GET['user'];
     //check user payment
-    $get_user = $connectdb->prepare("SELECT * FROM users WHERE payment_status = 2 AND barcode = :barcode");
+    $get_user = $connectdb->prepare("SELECT * FROM users WHERE payment_status = 2 AND barcode = :barcode OR pcn_number = :pcn_number");
     $get_user->bindValue('barcode', $user);
+    $get_user->bindValue('pcn_number', $user);
     $get_user->execute();
     
     if(!$get_user->rowCount() > 0){
-        echo "<p class='exist' style='font-size:1.1rem'>User has not made payment <i class='fas fa-ban'></i></p>";
+        echo "<p class='exist' style='font-size:1.1rem'>User not found <i class='fas fa-ban'></i></p>";
     }else{
         $rows = $get_user->fetchAll();
         foreach($rows as $row){

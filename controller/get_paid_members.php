@@ -1,6 +1,6 @@
 <?php
 include "connections.php";
-$pcn = "001779";
+$pcn = "031363";
 // Initiate curl session in a variable (resource)
 $curl_handle = curl_init();
 // endpoint to the api that has the data you want to retrieve
@@ -45,6 +45,8 @@ if($response_data['success'] != 1){
 	//convert full details string to array
 	$details_array = explode(" ", $full_details);
 	$last_name = $details_array[0];
+	$last_name = trim($last_name, ",");
+	// echo $last_name;
 	$first_name = $details_array[1];
 	//insert into paid members
 	$data = $connectdb->prepare("INSERT INTO paid_members(pcn_number, user_email, last_name, first_name) VALUES (:pcn_number, :user_email, :last_name, :first_name)");
