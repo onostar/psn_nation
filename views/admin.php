@@ -163,7 +163,7 @@
                     ?>
                     <tr>
                         <td><button><a href="javascript:void(0)" onclick="showPage('clearance.php?user=<?php echo $all->user_id;?>')" title="View details"><?php echo $n?></a></button></td>
-                        <td><?php echo $all->first_name . " " . $all->last_name;?></td>
+                        <td><?php echo ucwords($all->first_name . " " . $all->last_name);?></td>
                         <!-- <td style="color:var(--otherColor)"><?php echo $all->pcn_number;?></td> -->
                         <td style="color:var(--primaryColor)"><?php echo $all->whatsapp;?></td>
                         <td style="color:green"><?php echo $all->user_type;?></td>

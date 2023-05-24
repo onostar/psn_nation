@@ -13,7 +13,7 @@
     <!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="fontawesome-free-5.15.1-web/css/all.css">
-    <link rel="icon" type="image/png" href="images/psn_logo2.png" size="32X32">
+    <link rel="icon" type="image/png" href="images/conference_logo.png" size="32X32">
     <link rel="stylesheet" href="style.css">
     
 </head>
@@ -69,7 +69,7 @@
             <div class="slides">
                 <div class="slide">
                     <div class="banner_img">
-                        <img src="images/pharmacy.jpg" alt="banner">
+                        <img src="images/conference_logo.jpg" alt="banner">
                     </div>
                     <div class="taglines">
                         <div class="taglines_note">
@@ -77,7 +77,7 @@
                             <p>Welcome to the registration portal for the Annual National Conference "Jewel City 2023"</p>
                             <div class="btns">
                                 <!-- <a href="javascript:void(0)" class="showRequest">Schedule an Appointment Now</a> -->
-                                <a href="guests/guest_login.php" title="Guests portal">Guests Login <i class="fas fa-sign-in-alt"></i></a>
+                                <a href="guests/guest_login.php" title="Guests portal" style="background:var(--primaryColor)">Guests Login <i class="fas fa-sign-in-alt"></i></a>
                                 <a href="views/registration.php">Delegates <i class="fas fa-sign-in-alt"></i></a>
                             </div>
                         </div>

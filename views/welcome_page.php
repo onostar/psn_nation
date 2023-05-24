@@ -100,11 +100,18 @@
                 if(isset($_SESSION['reg_success'])){
                     echo "<p id='reg_success'>" . $_SESSION['reg_success'] . "</p><br><p id='reg_success'>Kindly confirm your details below and upload your passport.</p>";
             ?>
+            
                 <div class="management displays" style="display:block" id="profile">
                     <div class="info"></div>
                     <div class="add_user_form">
                         <h3 style="text-align:center">Update profile</h3>
                         <form method="POST"  id="addCatForm" action="../controller/update_profile.php" enctype="multipart/form-data">
+                        <?php
+                            if(isset($_SESSION['error'])){
+                                echo "<p class='error'>" . $_SESSION['error']. "</p>";
+                                unset($_SESSION['error']);
+                            }
+                        ?>
                             <input type="hidden" value="<?php echo $user->user_id?>" name="user_id">
                             <div class="inputs">
                                 
@@ -188,7 +195,7 @@
                                     <div class="user_passport">
                                         <img src="<?php echo "../passports/".$user->passport;?>" alt="Passport">
                                     </div>
-                                    <label for="passport">Upload passport</label>
+                                    <label for="passport">Upload passport (not more than 300kb)</label>
                                     <input type="file" name="passport" id="passport" required>
                                 </div>
                                 <div class="data">

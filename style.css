@@ -2048,7 +2048,7 @@ main hr{
 .user_passport{
     box-shadow:2px 2px 2px 2px #c4c4c4;
     border-radius:5px;
-    width:200px;
+    width:100%;
 }
 .user_passport img{
     width:100%;
@@ -3183,6 +3183,24 @@ main hr{
     .flash_img{
         width:100px;
         height: 100px;
+    }
+    .details_form{
+        width:100%;
+    }
+    #profile{
+        width:95%!important;
+    }
+    #profile .add_user_form{
+        width:97%;
+    }
+    #profile .add_user_form h3{
+        font-size: 1.1rem;
+    }
+    #profile .add_user_form input{
+        border-radius: 5px;
+    }
+    #profile .add_user_form label{
+        font-size:.9rem;
     }
 }
 @media screen and (max-width:650px){
