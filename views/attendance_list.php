@@ -250,7 +250,7 @@
                 <option value="AHAPN">AHAPN</option>
             </select>
         </div>
-        <div class="user_types">
+       <!--  <div class="user_types">
             <label for="interest">Interest group</label>
             <select name="filter_int" id="filter_int" onchange="filterAttendance(this.value, 'filter_interest_group.php')">
                 <option value=""selected>Select Interest group</option>
@@ -261,7 +261,7 @@
                 <option value="YPG">YPG</option>
                 <option value="PWDAN">PWDAN</option>
             </select>
-        </div>
+        </div> -->
         <div class="user_types">
             <label for="user_type">Guest type</label>
             <select name="filter_gtype" id="filter_gtype" onchange="filterAttendance(this.value, 'filter_guest_type.php')">

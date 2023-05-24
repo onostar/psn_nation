@@ -220,7 +220,7 @@
                                     <option value="AHAPN">AHAPN</option>
                                     </select>
                                 </div>
-                                <div class="data">
+                                <!-- <div class="data">
                                     <label for="interest_group">Interest Group</label>
                                     <select name="interest_group" id="interest_group" required>
                                     <option value=""selected>Select Interest group</option>
@@ -231,13 +231,13 @@
                                     <option value="YPG">YPG</option>
                                     <option value="PWDAN">PWDAN</option>
                                     </select>
-                                </div>
-                                
-                            </div>
-                            <div class="inputs">
+                                </div> -->
                                 <div class="update_btn data">
                                     <button type="submit" id="update" name="update">Update Profile <i class="fas fa-user"></i></button>
                                 </div>
+                            </div>
+                            <div class="inputs">
+                                
                             </div>
                             
                                 
