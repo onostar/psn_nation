@@ -77,7 +77,7 @@
                 <?php include "guest_menu.php"?>
             </aside>
             <div class="contents">
-                <?php include "loading.php"?>;
+                <?php include "../views/loading.php"?>;
             <section id="contents">
                 <div class="success_message">
                     <p>
