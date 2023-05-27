@@ -43,7 +43,7 @@
     left:0;
     height:100%;
     width:100%;
-    opacity: .1;
+    opacity: .05;
     text-align: center;
     overflow:hidden;
 

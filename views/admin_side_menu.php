@@ -24,15 +24,7 @@
             <!-- <li><a href="javascript:void(0)" title="Register user" onclick="showPage('onsite_registration.php')"><i class="fas fa-user"></i> Onsite Registration</a></li> -->
             <?php if($last_name == "Admin"){?>
             <li><a href="javascript:void(0)" title="Conference attendance list" class="page_navs" data-page="attendance_list" onclick="showPage('attendance_list.php')"><i class="fas fa-user-graduate"></i> Attendance List</a></li>
-            <li><a href="javascript:void(0);" class="addMenu allMenus" title="manage accomodations"><span><i class="fas fa-hotel"></i> Accomodation </span><span><i class="fas fa-chevron-down"></i></span></a>
-                <ul class="nav1Menu">
-                    <!-- <li><a href="javascript:void(0);" id="addMenu" title="View accomodation requests" class="page_navs" data-page="hotel_request" onclick="showPage('confirm_accomod.php')"><i class="fas fa-paper-plane"></i> Accomodation requests</a></li>
-                    <li><a href="javascript:void(0);" id="addMenu" title="Approve bulk requests" class="page_navs" data-page="bulk_request" onclick="showPage('confirm_bulk.php')"><i class="fas fa-users"></i> Confirm Bulk requests</a></li> -->
-                    <li><a href="javascript:void(0);" id="addHot" title="Add hotels" class="page_navs" data-page="add_hotel" onclick="showPage('add_hotels.php')"><i class="fas fa-hotel"></i> Add Hotels</a></li>
-                    <!-- <li><a href="javascript:void(0);" id="addrm" title="Add rooms to hotel" class="page_navs" data-page="add_rooms" onclick="showPage('add_rooms.php')"><i class="fas fa-hotel"></i> Add Rooms & prices</a></li> -->
-                    <li><a href="javascript:void(0);" id="acomls" title="Add rooms to hotel" class="page_navs" data-page="accom_list" onclick="showPage('accomodations.php')"><i class="fas fa-book"></i> Accomodation list</a></li>
-                </ul>
-            </li>
+            
             <li><a href="javascript:void(0);" class="addExh allMenus" title="manage accomodations"><span><i class="fas fa-cart-arrow-down"></i> Exhibition </span><span class="second_icon"><i class="fas fa-chevron-down" style="box-shadow:none;"></i></span></a>
                 <ul class="nav2Menu">
                     <li><a href="javascript:void(0);" id="addexhi" title="Add Exhibitors" class="page_navs" onclick="showPage('add_exhibitors.php')"><i class="fas fa-user-tie"></i> Add exhibitors</a></li>
@@ -48,11 +40,21 @@
                     <li><a href="javascript:void(0);" id="updateUser" class="page_navs" data-page="deliveryList"><i class="fas fa-coins"></i> Delivery Reports</a></li> -->
                 </ul>
             </li>
-            <li style="margin:0 0 100px 0!important"><a href="javascript:void(0);" class="guestMenu allMenus" title="manage accomodations"><span><i class="fas fa-users"></i> Guests </span><span><i class="fas fa-chevron-down"></i></span></a>
+            <li><a href="javascript:void(0);" class="guestMenu allMenus" title="manage accomodations"><span><i class="fas fa-users"></i> Guests </span><span><i class="fas fa-chevron-down"></i></span></a>
                 <ul class="nav3Menu">
                     <li><a href="javascript:void(0)" onclick="showPage('manage_guests.php')" title="Manage guest types"><i class="fas fa-user-tie"></i> Manage guests</a></li>
                     <li><a href="javascript:void(0)" onclick="showPage('guest_list.php')" title="List of guests"><i class="fas fa-users"></i> Guest List</a></li>
                     <!-- <li><a href="javascript:void(0)" onclick="showPage('confirm_guest.php')" title="Confirm guests payment"><i class="fas fa-users"></i> Confirm Guest payment</a></li> -->
+                </ul>
+            </li>
+            <li><a href="javascript:void(0);" id="surv" title="View surveys" class="page_navs" data-page="survey_list" onclick="showPage('surveys.php')"><i class="fas fa-book"></i> Surveys</a></li>
+            <li style="margin:0 0 100px 0!important"><a href="javascript:void(0);" class="addMenu allMenus" title="manage accomodations"><span><i class="fas fa-hotel"></i> Accomodation </span><span><i class="fas fa-chevron-down"></i></span></a>
+                <ul class="nav1Menu">
+                    <!-- <li><a href="javascript:void(0);" id="addMenu" title="View accomodation requests" class="page_navs" data-page="hotel_request" onclick="showPage('confirm_accomod.php')"><i class="fas fa-paper-plane"></i> Accomodation requests</a></li>
+                    <li><a href="javascript:void(0);" id="addMenu" title="Approve bulk requests" class="page_navs" data-page="bulk_request" onclick="showPage('confirm_bulk.php')"><i class="fas fa-users"></i> Confirm Bulk requests</a></li> -->
+                    <li><a href="javascript:void(0);" id="addHot" title="Add hotels" class="page_navs" data-page="add_hotel" onclick="showPage('add_hotels.php')"><i class="fas fa-hotel"></i> Add Hotels</a></li>
+                    <!-- <li><a href="javascript:void(0);" id="addrm" title="Add rooms to hotel" class="page_navs" data-page="add_rooms" onclick="showPage('add_rooms.php')"><i class="fas fa-hotel"></i> Add Rooms & prices</a></li> -->
+                    <li><a href="javascript:void(0);" id="acomls" title="Add rooms to hotel" class="page_navs" data-page="accom_list" onclick="showPage('accomodations.php')"><i class="fas fa-book"></i> Accomodation list</a></li>
                 </ul>
             </li>
             <!-- <li><a href="../controller/get_paid_members.php" id="upLoadMem" class="page_navs" data-page="connect to pharmagateway"><i class="fas fa-users"></i> get paid members</a></li> -->

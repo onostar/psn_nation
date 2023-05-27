@@ -15,7 +15,7 @@
 ?>
 
     <div class="info"></div>
-    <h2>Certificate of Participation</h2>
+    <h2>Certificate of Attendance</h2>
     <?php 
         $attendance_status = $connectdb->prepare("SELECT * FROM users WHERE user_id = :user_id AND attendance != 0");
         $attendance_status->bindvalue("user_id", $user->user_id);
@@ -90,8 +90,8 @@
                         <!-- <figcaption>Motto</figcaption> -->
                     </figure>
                     <div class="cert">
-                        <h3>CERTIFICATE OF PARTICIPATION</h3>
-                        <p>This is to certify that</p>
+                        <h3>CERTIFICATE OF ATTENDNACE</h3>
+                        <p>This certificate is presented to</p>
                     </div>
                     <figure>
                         <img src="../images/conference_logo.png" alt="psn">
@@ -102,7 +102,7 @@
                 <div class="details">
                     <h2 class="full_name"><?php echo $user->last_name . " " .$user->first_name?></h2>
                     <hr>
-                    <p>Attended the <span>Annual National Conference</span> of the Pharmaceutical Society of Nigeria (PSN) <span>"JEWEL CITY" <?php echo date("Y")?></p>
+                    <p>For Attending the <span>Annual National Conference</span> of the Pharmaceutical Society of Nigeria (PSN) <span>"JEWEL CITY" <?php echo date("Y")?></p>
                     <div class="dates">
                         <h4>Oct 30<sup>th</sup> to Nov 4<sup>th</sup>, 2023</h4>
                     </div>

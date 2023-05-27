@@ -2264,6 +2264,11 @@ main hr{
 }
 .cert h3{
     font-size:1.8rem;
+    /* background:green;
+    color:#fff;
+    border-radius:10px -10px; */
+    margin:10px 0;
+    padding:10px 20px;
 }
 .cert p{
     color:rgb(238, 123, 29);
@@ -2499,6 +2504,23 @@ main hr{
     padding:5px;
     width:auto!important;
     text-transform: uppercase;
+}
+.response .data h2{
+    font-size:.9rem!important;
+    color:#222!important;
+    text-transform: capitalize;
+    text-align: left;
+    padding: 5px;
+}
+.response .inputs{
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.response .inputs .data{
+    border:1px solid #c4c4c4;
+}
+.response .inputs .data p{
+    padding:10px;
 }
 #regions{
     display:none;
