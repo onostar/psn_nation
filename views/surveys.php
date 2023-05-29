@@ -14,7 +14,7 @@
                         <td>Name</td>
                         <td>User type</td>
                         <td>Date</td>
-                        <td></td>
+                        <!-- <td></td> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -39,9 +39,9 @@
                     <td><?php echo $full_name?></td>
                     <td><?php echo $type?></td>
                     <td><?php echo date("jS M, Y", strtotime($row->post_date))?></td>
-                    <td>
+                    <!-- <td>
                         <a style="background:var(--primaryColor); color:#fff; padding:5px 10px;"href="javascript:void(0);" title="View attendance" onclick="showPage('view_survey.php?survey=<?php echo $row->survey_id?>')"><i class="fas fa-eye"></i> View</a>
-                    </td>
+                    </td> -->
                     <tr>
                     <?php $n++; }?>
                 </tbody>
