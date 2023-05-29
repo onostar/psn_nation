@@ -1320,7 +1320,7 @@ function vpay(fee, user, user_email){
         amount: fee,
         currency: 'NGN',
         domain: 'live',
-        key: '42f4c67d-cc83-4d22-8a7b-97d8c45c8196',
+        key: 'a4b5da23-8398-4a4f-9b5b-19835e058986',
         
 email: user_email,
         transactionref: transNum,
@@ -1344,8 +1344,9 @@ response.message); }
     }                
 };
 
-//submit survey form
-function submitSurvey(){
+//submit survey form to data base
+/* function submitSurvey(){
+
     let delegate = document.getElementById("delegate").value;
     let satisfaction = document.getElementById("satisfaction").value;
     let elements = document.getElementById("elements").value;
@@ -1386,6 +1387,12 @@ function submitSurvey(){
         }, 2000)
         return false;
     }
+} */
+//submit survey to google form
+function submitSurvey(user){
+    window.open("../controller/submit_survey.php?user="+user, "_parent");
+    return
+    
 }
 
 //add exhibitors

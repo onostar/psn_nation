@@ -26,7 +26,7 @@
         $reg_number = "GUEST/".$cur_time ."/00";
         if(strlen($password) < 5){
             $_SESSION['error'] = "Password is too short!";
-            header("Location: ../views/guest_registration.php");
+            header("Location: ../guests/guest_registration.php");
         }else{
             /* check if user already exists */
             $check_user = $connectdb->prepare("SELECT * FROM users WHERE user_email = :user_email");

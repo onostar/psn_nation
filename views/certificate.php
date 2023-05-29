@@ -31,7 +31,7 @@
         <div class="add_user_form" style="border-radius:20px;  overflow:hidden">
             <h3>Conference survey form</h3>
             <section id="addCatForm">
-                <div class="inputs">
+                <!-- <div class="inputs">
                     <div class="data">
                         <input type="hidden" name="delegate" id="delegate" value="<?php echo $user->user_id?>">
                         <label for="satisfaction">What is your level of satisfaction with this event?</label>
@@ -56,9 +56,9 @@
                         <label for="topics">What topics would you like to see more of at our next conference?</label>
                         <textarea name="topics" id="topics" cols="30" rows="5" placeholder="Your response"></textarea>
                     </div>
-                </div>
-                <div class="inputs" style="align-items:flex-end">
-                    <div class="data">
+                </div> -->
+                <div class="inputs">
+                    <!-- <div class="data">
                         <label for="speakers">How satisfied where you with the speakers and sessions at the events?</label>
                         <select name="speakers" id="speakers">
                             <option value="" selected>Select a response</option>
@@ -66,9 +66,12 @@
                             <option value="Not Satisfied">Not Satisfied</option>
                             <option value="Can do better">Can do better</option>
                         </select>
-                    </div>
-                    <div class="data">
-                        <button id="submit_survey" name="submit_survey" onclick="submitSurvey()">Submit <i class="fas fa-paper-plane"></i></button>
+                    </div> -->
+                    <div class="data" style="width:100%">
+                        <p style="text-align:center">KIndly click on the link below to submit a survey form and generate your certficate</p>
+                        <div class="survey_button">
+                            <button id="submit_survey" name="submit_survey" onclick="submitSurvey('<?php echo $user->user_id?>')">Survey Form <i class="fas fa-paper-plane"></i></button>
+                        </div>
                     </div>
                 </div>
             </section>

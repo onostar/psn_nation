@@ -1,7 +1,8 @@
 <?php
     include "connections.php";
+    //for database
 
-    $delegate = htmlspecialchars(stripslashes($_POST['delegate']));
+    /* $delegate = htmlspecialchars(stripslashes($_POST['delegate']));
     $satisfaction = htmlspecialchars(stripslashes($_POST['satisfaction']));
     $elements = htmlspecialchars(stripslashes($_POST['elements']));
     $registration = htmlspecialchars(stripslashes($_POST['registration']));
@@ -27,7 +28,26 @@
         }
     }else{
         echo "<div class='error'><p>Error! No submit</p></div>";
-    }
+    } */
    
+    //for google form
+    if(isset($_GET['user'])){
+        $delegate = $_GET['user'];
 
+        //insert to survey
+        $submit_survey = $connectdb->prepare("INSERT INTO surveys (delegate) VALUE (:delegate)");
+        $submit_survey->bindValue("delegate", $delegate);
+        $submit_survey->execute();
+
+        if($submit_survey){
+            $update_status = $connectdb->prepare("UPDATE users SET attendance = 2 WHERE user_id = :user_id");
+            $update_status->bindValue("user_id", $delegate);
+            $update_status->execute();
+            //open google form
+            if($update_status){
+                header("Location: https://forms.gle/hUHhvAQCJyHHeRy87");
+            }
+        }
+
+    }
 ?>

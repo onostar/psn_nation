@@ -2580,6 +2580,10 @@ main hr{
     padding:4px;
     text-align: center;
 }
+.survey_button{
+    width:50%;
+    margin:5px auto;
+}
 @media screen and (max-width: 800px){
     #topHeader{
         justify-content: space-between;
