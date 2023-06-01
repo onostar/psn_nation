@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2023 at 08:42 PM
+-- Generation Time: May 29, 2023 at 01:42 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -24,12 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE `attendance` (
+  `attendance_id` int(11) NOT NULL,
+  `event` int(11) NOT NULL,
+  `pharmacist` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_attend` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `booths`
 --
 
 CREATE TABLE `booths` (
   `booth_id` int(11) NOT NULL,
-  `hall` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hall` int(11) NOT NULL,
   `booth` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `booth_price` int(11) NOT NULL,
   `booth_status` int(11) NOT NULL
@@ -40,13 +53,8 @@ CREATE TABLE `booths` (
 --
 
 INSERT INTO `booths` (`booth_id`, `hall`, `booth`, `booth_price`, `booth_status`) VALUES
-(6, 'The Corridor', 'A15', 23000, 0),
-(7, 'The Corridor', 'A23', 23000, 0),
-(8, 'Asian Hall', 'B10', 2000, 0),
-(9, 'The Corridor', 'D8', 20000, 0),
-(10, 'The Corridor', 'D9', 25000, 0),
-(11, 'Marquee', 'A25', 30000, 1),
-(12, 'Marquee', 'A26', 27000, 0);
+(17, 8, 'lane 43', 4000, 0),
+(18, 7, 'zion hall', 50000, 0);
 
 -- --------------------------------------------------------
 
@@ -64,26 +72,8 @@ CREATE TABLE `booth_categories` (
 --
 
 INSERT INTO `booth_categories` (`hall_id`, `hall`) VALUES
-(1, 'Marquee'),
-(2, 'Asian Hall'),
-(3, '2nd Hall'),
-(4, 'The Corridor'),
-(5, 'Bar Area');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `cart`
---
-
-CREATE TABLE `cart` (
-  `cart_id` int(11) NOT NULL,
-  `item_name` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `item_price` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `company` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customer_email` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(7, 'Main Hall'),
+(8, 'Out Door');
 
 -- --------------------------------------------------------
 
@@ -96,15 +86,18 @@ CREATE TABLE `categories` (
   `category` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `categories`
+-- Table structure for table `events`
 --
 
-INSERT INTO `categories` (`category_id`, `category`) VALUES
-(8, 'Contraceptives'),
-(9, 'Supplements'),
-(10, 'Poisons'),
-(11, 'Multivitamins');
+CREATE TABLE `events` (
+  `event_id` int(11) NOT NULL,
+  `event` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `venue` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `event_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -122,16 +115,44 @@ CREATE TABLE `exhibitors` (
   `contact_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `designation` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `staff_number` int(11) NOT NULL,
-  `portal_manager` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `manager_contact` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hall` int(11) NOT NULL,
   `booth` int(11) NOT NULL,
   `reg_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `company_logo` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payment_slip` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
   `payment_status` int(11) NOT NULL,
-  `company_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `reg_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `exhibitors`
+--
+
+INSERT INTO `exhibitors` (`exhibitor_id`, `company_name`, `company_email`, `company_address`, `company_phone`, `contact_person`, `contact_phone`, `designation`, `staff_number`, `hall`, `booth`, `reg_number`, `company_logo`, `payment_status`, `reg_date`) VALUES
+(18, 'Onostar Media', 'Onostarmedia@gmail.com', '23 Sapele Road Benin City', '07068897068', 'Ikpefua Kelly', '07068897068', 'Director', 4, 7, 18, 'EXH/2023/0018', '', 2, '2023-05-13 14:16:26'),
+(19, 'Applied Macrosystems', 'Info@appliedmacros.com', '38 PZ Road, Benin City, Edo State', '08069114149', 'Daniel Aruoture', '07068897068', 'Sales Manager', 4, 8, 17, 'EXH/2023/0019', '', 2, '2023-05-19 14:54:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guest_types`
+--
+
+CREATE TABLE `guest_types` (
+  `guest_type_id` int(11) NOT NULL,
+  `guest_type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guest_fee` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `guest_types`
+--
+
+INSERT INTO `guest_types` (`guest_type_id`, `guest_type`, `guest_fee`) VALUES
+(1, 'Student', 3000),
+(2, 'Intern', 3000),
+(3, 'NYSC', 5000),
+(4, 'Diaspora', 20000),
+(5, 'Accompanying Persons', 10000);
 
 -- --------------------------------------------------------
 
@@ -143,83 +164,20 @@ CREATE TABLE `hotels` (
   `hotel_id` int(11) NOT NULL,
   `hotel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `website` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `hotel_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `hotel_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact_phone` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `hotels`
 --
 
-INSERT INTO `hotels` (`hotel_id`, `hotel`, `website`, `hotel_address`) VALUES
-(16, 'Uyi Grand Hotel', 'www.uyigrand.com', '23 Boundary Road, GRA, Benin City'),
-(19, 'Baiden Baiden', 'www.baiden-baiden.com', '124 Sapele Road Opposit Limit Junction, Benin City'),
-(20, 'Morzi Hotels', 'www.morzi.com', '23 Ugbor Road, Benin City');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `menu`
---
-
-CREATE TABLE `menu` (
-  `item_id` int(11) NOT NULL,
-  `company` int(11) NOT NULL,
-  `item_category` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `item_name` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `item_prize` int(11) NOT NULL,
-  `previous_price` int(11) NOT NULL,
-  `item_foto` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `item_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `featured_item` int(12) NOT NULL,
-  `daily_deal` int(11) NOT NULL,
-  `time_created` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `menu`
---
-
-INSERT INTO `menu` (`item_id`, `company`, `item_category`, `item_name`, `item_prize`, `previous_price`, `item_foto`, `item_description`, `featured_item`, `daily_deal`, `time_created`) VALUES
-(34, 11, '11', 'Immune Boost', 2000, 0, '', '', 1, 0, '2022-03-19 10:09:51'),
-(35, 11, '11', 'Amino Pep Forte', 3000, 0, '', '', 1, 0, '2022-03-19 10:10:02'),
-(36, 11, '8', 'Vega 100', 500, 0, '', '', 1, 0, '2022-03-19 10:10:17'),
-(37, 12, '9', 'Calimax', 750, 0, '', '', 1, 0, '2022-03-19 10:10:35'),
-(38, 12, '9', 'Calcitone', 350, 0, '', '', 1, 0, '2022-03-19 10:10:44');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `notifications`
---
-
-CREATE TABLE `notifications` (
-  `notification_id` int(11) NOT NULL,
-  `customer_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subject` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `details` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notification_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `orders`
---
-
-CREATE TABLE `orders` (
-  `order_id` int(11) NOT NULL,
-  `customer_email` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `item_name` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `item_price` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `company` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `order_number` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `order_status` int(11) NOT NULL,
-  `delivery_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `hotels` (`hotel_id`, `hotel`, `website`, `hotel_address`, `contact_phone`) VALUES
+(16, 'Uyi Grand Hotel', 'www.uyigrand.com', '23 Boundary Road, GRA, Benin City', ''),
+(19, 'Baiden Baiden', 'www.baiden-baiden.com', '124 Sapele Road Opposit Limit Junction, Benin City', ''),
+(20, 'Morzi Hotels', 'www.morzi.com', '23 Ugbor Road, Benin City', ''),
+(21, 'Windy Hill Hotels', 'windyhillhotels.com', '192 Ogba Road, Benin City', ''),
+(23, 'Omo One Apartments', 'omo-one.com', 'Elema Palace, Benin City', '07068897068');
 
 -- --------------------------------------------------------
 
@@ -235,16 +193,519 @@ CREATE TABLE `paid_members` (
   `whatsapp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `res_state` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `gender` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `gender` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fellow` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `paid_members`
 --
 
-INSERT INTO `paid_members` (`payment_id`, `pcn_number`, `first_name`, `last_name`, `whatsapp`, `res_state`, `user_email`, `gender`) VALUES
-(7, '425716', 'kelly', 'Ikpefua', '07068897068', 'Edo', 'onostarkels@gmail.com', 'M'),
-(8, '111122', 'james', 'john', '0806677777', 'Lagos', 'james@gmail.com', 'm');
+INSERT INTO `paid_members` (`payment_id`, `pcn_number`, `first_name`, `last_name`, `whatsapp`, `res_state`, `user_email`, `gender`, `fellow`) VALUES
+(9, '425716', 'kelly', 'ikpefua', '07068897068', 'Edo', 'onostarkels@gmail.com', 'Male', 0),
+(19, '031363', 'AMARACHUKWU', 'CHUKWUNONYELUM', '', '', 'halamara0@gmail.com', '', 0),
+(22, '031751', 'Odjegba', 'Onoriode', '07064370054', '', '', '', 0),
+(23, '016739', 'Stephen', '', '08066466238', '', '', '', 0),
+(24, '027152', 'Veronica', 'Akpan', '08165339511', '', '', '', 0),
+(25, '011953', 'FOLORUNSO', 'IBRAHIM', '07019221173', '', '', '', 0),
+(26, '003526', 'Oyediran', 'Josiah', '8033418615', '', '', '', 0),
+(27, '031728', 'Oyekpen', 'Elizabeth', '08105449613', '', '', '', 0),
+(28, '014682', 'Raji', 'Enesi', '08035285077', '', '', '', 0),
+(29, '032864', 'Amoke', 'ucheoma', '08036556727', '', '', '', 0),
+(30, '009036', 'Awodi', 'Jacob', '08065318427', '', '', '', 0),
+(31, '002658', 'Grace', 'Ekhuemelo', '08023426046', '', '', '', 0),
+(32, '023324', 'Alheri', 'Bwala', '08063470647', '', '', '', 0),
+(33, '019644', 'Inyang,Edidiong.', 'Iniobong', '+2347035400386', '', '', '', 0),
+(34, '019644', 'Inyang,Edidiong.', 'Iniobong', '+2347035400386', '', '', '', 0),
+(35, '014543', 'Akaninyene', 'Daniel', '07035164233', '', '', '', 0),
+(36, '010256', 'Enuka', 'Juliana', '8069403718', '', '', '', 0),
+(37, '010256', 'Enuka', 'Juliana', '8069403718', '', '', '', 0),
+(38, '028099', 'Samuel', 'Uduak', '08147338928', '', '', '', 0),
+(39, '015637', 'AKINKUNMI', 'JACOB', '8063776112', '', '', '', 0),
+(40, '019588', 'Florence', 'Jonathan', '7034366048', '', '', '', 0),
+(41, '013913', 'Omeke', 'Chinedu', '07032361890', '', '', '', 0),
+(42, '006684', 'Elgba', 'Aondongu', '07037375244', '', '', '', 0),
+(43, '016560', 'Ephraim', 'Tom', '08027347719', '', '', '', 0),
+(44, '023316', 'Ebenuwe', 'chukwunalu', '08062737032', '', '', '', 0),
+(45, '026153', 'Uwuigbe', 'Ehikioya', '8068914336', '', '', '', 0),
+(46, '023750', 'Chijioke', 'Nnatu', '07061692335', '', '', '', 0),
+(47, '017782', 'Idoko', 'Ifeoma', '08039228287', '', '', '', 0),
+(48, '029083', 'MUNIR', 'HAIDARA', '08146482097', '', '', '', 0),
+(49, '013909', 'Eze', 'Everistus', '08030884907', '', '', '', 0),
+(50, '021701', 'UDOMBAT', 'UDO', '7038656369', '', '', '', 0),
+(51, '004583', 'Umeokoli', 'Chigoziem', '08055485886', '', '', '', 0),
+(52, '013681', 'Ereku', 'Akotare', '8033802939', '', '', '', 0),
+(53, '029036', 'Okoro', 'Samuel', '07069449923', '', '', '', 0),
+(54, '000738', 'ABUBAKAR', 'SAIDU', '08037010760', '', '', '', 0),
+(55, 'PCN/D/0079022', 'INUWA', 'MUHAMMAD', '07069567797', '', '', '', 0),
+(56, '027120', 'IKWOT', 'SUNDAY', '08120469617', '', '', '', 0),
+(57, '030013', 'Blessing', 'Nta', '08125287339', '', '', '', 0),
+(58, '021729', 'AWOSODE', 'KAYODE', '7037991624', '', '', '', 0),
+(59, '001998', 'IGBEKA', 'EMMANUEL', '08037597906', '', '', '', 0),
+(60, '017458', 'Ukpong', 'Okon', '08182275244', '', '', '', 0),
+(61, '025686', 'Chinedu', 'Umezurike', '08060620595', '', '', '', 0),
+(62, '026882', 'Emebradu', 'Ohwoodo', '07032651473', '', '', '', 0),
+(63, '002268', 'Ilorin', 'Olufemi', '08131138008', '', '', '', 0),
+(64, '026581', 'Egbe-igbinigie', 'Precious', '08134997069', '', '', '', 0),
+(65, '030318', 'Ugwu', 'Chisimdindu', '8165192422', '', '', '', 0),
+(66, '017444', 'Adaramola', 'Michael', '8137888609', '', '', '', 0),
+(67, '030796', 'Precious', 'Ebenezer', '8025848748', '', '', '', 0),
+(68, '027984', 'Ojeah', 'Chiazor', '8106683944', '', '', '', 0),
+(69, '015876', 'Ponjul', 'Dandam', '08071813365', '', '', '', 0),
+(70, '011845', 'Owi', 'Joy Doite', '08036020418', '', '', '', 0),
+(71, '028400', 'Osohor', 'Faith', '8138969369', '', '', '', 0),
+(72, '025847', 'Nyeneime', 'Useh', '08067080379', '', '', '', 0),
+(73, '010794', 'Atai', 'Imoh', '8037510963', '', '', '', 0),
+(74, '0011658', 'EMEYE', 'ONYEKA', '08033871884', '', '', '', 0),
+(75, '020567', 'Odafe', 'Arubayi', '07030240780', '', '', '', 0),
+(76, '025922', 'CHARLES', 'OKAFOR', '8033327372', '', '', '', 0),
+(77, '008704', 'Otung', 'Otung', '07035035032', '', '', '', 0),
+(78, '02858', 'Orogun', 'Olukayode', '08136645802', '', '', '', 0),
+(79, '11442', 'EFFIONG', 'EDET', '+2348036976247', '', '', '', 0),
+(80, '028203', 'Asogwa', 'Nnamdi', '07033944407', '', '', '', 0),
+(81, '021058', 'Okorie', 'Emmanuel', '07038906503', '', '', '', 0),
+(82, '022528', 'Muhammad', 'Ibrahim', '08069705152', '', '', '', 0),
+(83, '009733', 'Festus', 'Ejide', '08052114803', '', '', '', 0),
+(84, '022680', 'Ekwere,', 'Imeh', '7035275377', '', '', '', 0),
+(85, '021637', 'Hafsat', 'Abubakar', '08034174189', '', '', '', 0),
+(86, '023425', 'Ohenhen-Stephen', 'Sieg', '8134873956', '', '', '', 0),
+(87, '024493', 'Sunday', 'Bassey', '08037028672', '', '', '', 0),
+(88, '016765', 'Philip', 'Omede', '07038234362', '', '', '', 0),
+(89, '009636', 'Idris', 'OYEMITAN', '08038171360', '', '', '', 0),
+(90, '031552', 'Ezenma', 'Okechukwu', '09036589262', '', '', '', 0),
+(91, '031389', 'Majesty', 'Maduneme', '08068003544', '', '', '', 0),
+(92, '031217', 'Asuluk', 'Julius', '08131094636', '', '', '', 0),
+(93, '016257', 'Ubom', 'Dorcas', '+2348034780183', '', '', '', 0),
+(94, '005600', 'Zainab', 'Shariff', '08033328656', '', '', '', 0),
+(95, '016772', 'Olaniyi', 'Funso', '+2348060265072', '', '', '', 0),
+(96, '021364', 'Halima', 'Balarabe', '+2347033599281', '', '', '', 0),
+(97, '008844', 'Samuel', 'Offor', '09048875686', '', '', '', 0),
+(98, '003235', 'Amadi', 'C.', '0818683078', '', '', '', 0),
+(99, '027045', 'Mustapha', 'Eleyinla', '08169201528', '', '', '', 0),
+(100, '027045', 'Mustapha', 'Eleyinla', '08169201528', '', '', '', 0),
+(101, '030094', 'IDIONO-OBONG', 'JOHNSON', '08102723202', '', '', '', 0),
+(102, '027139', 'HAMISU', '', '08028816894', '', '', '', 0),
+(103, '008978', 'SIKUADE', '', '08033274224', '', '', '', 0),
+(104, '023744', 'EMEDIONG', 'EMMANUEL', '08164623680', '', '', '', 0),
+(105, '019578', 'Peter', 'Charles', '08064845490', '', '', '', 0),
+(106, '020797', 'Odeh', 'Cynthia', '07035918514', '', '', '', 0),
+(107, '022609', 'Chinwuba', 'chimere', '7039458057', '', '', '', 0),
+(108, '1860', 'Ohwevwo', 'Emosivwe', '08025575676', '', '', '', 0),
+(109, '008272', 'Ekpema', 'Abasiattai', '08033372794', '', '', '', 0),
+(110, '029281', 'Olusomoka', 'Oluwaseun', '08163096218', '', '', '', 0),
+(111, '021742', 'Tansi', 'Emmanuel', '08033771299', '', '', '', 0),
+(112, '025259', 'Uko', 'Daniel', '08165644507', '', '', '', 0),
+(113, '005154', 'Peter', 'Uviovo', '08033317124', '', '', '', 0),
+(114, '026974', 'Oyibo-Jerry', 'Helen', '08161153785', '', '', '', 0),
+(115, '007963', 'Clementina', 'Ughasoro', '08025808550', '', '', '', 0),
+(116, '022012', 'EVWIERHURHOMA', 'CHRIS', '08038454815', '', '', '', 0),
+(117, '029255', 'Tobore', 'Egbegbadia', '7036335163', '', '', '', 0),
+(118, 'Peace', 'Sampson', 'Abia', '07032425583', '', '', '', 0),
+(119, '021097', 'ASUQUO,', 'SAMUEL', '08069342686', '', '', '', 0),
+(120, '031709', 'Tobi', 'Hillary', '08022910002', '', '', '', 0),
+(121, '017831', 'Emmanuel', 'Umoh', '08060453573', '', '', '', 0),
+(122, '020459 ', 'Okuguni', 'jeremiah', '08061588845', '', '', '', 0),
+(123, '025994', 'Haruna', 'Aliyu', '08065304774', '', '', '', 0),
+(124, '10328', 'Uwemedimo', 'Umoh', '08066129612', '', '', '', 0),
+(125, '028969', 'Awusi', 'Ovie', '07068954763', '', '', '', 0),
+(126, '006605', 'Maduekwu', 'Chima', '08032060466', '', '', '', 0),
+(127, '008700', 'Yahaya', 'Katagum', '8036064563', '', '', '', 0),
+(128, '010344', 'Okpegwa', 'Freeborn', '8169139603', '', '', '', 0),
+(129, '031777', 'Raji', 'Olasewa', '08165236857', '', '', '', 0),
+(130, '031777', 'Raji', 'Olasewa', '08165236857', '', '', '', 0),
+(131, '029594', 'Ehinze', 'Chiamaka', '08102891021', '', '', '', 0),
+(132, '019526', 'Udoh,', 'Francis', '08062931149', '', '', '', 0),
+(133, '025298', 'Edi', 'Egbe', '09062387514', '', '', '', 0),
+(134, '015365', 'Temitope', 'Ojoade', '08038615153', '', '', '', 0),
+(135, '002833', 'Haruna', 'Bida', '8055855511', '', '', '', 0),
+(136, '004915', 'Ajibola', 'Lawal', '08036082806', '', '', '', 0),
+(137, '022515', 'SUNDAY', 'MULTI', '8034953624', '', '', '', 0),
+(138, '018414', 'Akinmutola', 'Oluwaseyi', '8088964250', '', '', '', 0),
+(139, '019670', 'OKPANACHI', 'OMOJAYE', '08067951744', '', '', '', 0),
+(140, '024224', 'AJIBADE', 'SHUAEB', '07032096103', '', '', '', 0),
+(141, '024215', 'Taiwo', 'Ademisoye', '07037818334', '', '', '', 0),
+(142, '014395', 'OTUEKONG', 'EKONG', '08036656564', '', '', '', 0),
+(143, '028386', 'EZEJA', 'VALENTINE', '08065846365', '', '', '', 0),
+(144, 'O16480', 'Eugene', 'Apasi', '08065846365', '', '', '', 0),
+(145, 'O16480', 'Eugene', 'Apasi', '08065846365', '', '', '', 0),
+(146, 'O16480', 'Eugene', 'Apasi', '08065846365', '', '', '', 0),
+(147, '015286', 'Omenazu', 'Emmanuel', '08037624546', '', '', '', 0),
+(148, '031325', 'Obilo', 'Chukwuebuka', '08172665800', '', '', '', 0),
+(149, '014016', 'Emadoye', 'Etareri', '08039376196', '', '', '', 0),
+(150, '012808', 'UFUOMA', 'OHRE', '8138966773', '', '', '', 0),
+(151, '029460', 'Baraka', 'Muhammad', '07062920599', '', '', '', 0),
+(152, '023099', 'Falaki', 'Ahmad', '8065650861', '', '', '', 0),
+(153, '003252', 'FESTUS', 'AROGUNDADE', '08036458488', '', '', '', 0),
+(154, '030487', 'Nusaiba', '', '08137896346', '', '', '', 0),
+(155, '012315', 'Ogeneovo', 'Ugbebor', '8029885284', '', '', '', 0),
+(156, '009317', 'Osewonyenmwen', 'Ogiemudia', '8023048068', '', '', '', 0),
+(157, '014251', 'THOMPSON', 'GABRIEL', '08036634233', '', '', '', 0),
+(158, '008433', 'Ojeah', 'Ebere', '8033534114', '', '', '', 0),
+(159, '012813', 'ILIYA', 'SUNDAY', '08065265966', '', '', '', 0),
+(160, '023577', 'AFORKE', 'ANN', '8130423118', '', '', '', 0),
+(161, '016094', 'AMOS', 'KAZZAH', '08036943365', '', '', '', 0),
+(162, '018155', 'Okoh', '', '07033434172', '', '', '', 0),
+(163, '029037', 'Okwuoyibo', 'Ekenedinichukwu', '08059836202', '', '', '', 0),
+(164, '020975', 'Maryam', 'Umar', '08169089073', '', '', '', 0),
+(165, '016997', 'Efidi', 'Uchenna', '8034009970', '', '', '', 0),
+(166, '4091383265', 'Nnamani', 'Daniel', '08027963815', '', '', '', 0),
+(167, '005512', 'Azeez', 'Adeyemi', '8035896001', '', '', '', 0),
+(168, '024863', 'Abdulazeez', 'Abdullahi', '8069085029', '', '', '', 0),
+(169, '008400', 'Jennifer', 'Ogundimu', '08095049433', '', '', '', 0),
+(170, '024160', 'Muhammad', 'jamiu', '07030157604', '', '', '', 0),
+(171, '030167', 'Iji', 'Peter', '08038172271', '', '', '', 0),
+(172, '023008', 'Ovoke', 'Eduvie', '08036981172', '', '', '', 0),
+(173, '018566', 'Achebe', 'Godwin', '7061890866', '', '', '', 0),
+(174, '022873', 'Sobowale', 'Olamilekan', '7031663454', '', '', '', 0),
+(175, '022873', 'Sobowale', 'Olamilekan', '7031663454', '', '', '', 0),
+(176, '017266', 'Emaojo', 'Aduku', '8065360046', '', '', '', 0),
+(177, '008813', 'Zahra', 'Waziri', '08036144786', '', '', '', 0),
+(178, '029923', 'Isaac', 'Oyinlola', '08101681694', '', '', '', 0),
+(179, '025012', 'SALIHU', 'MUHAMMED', '08131323865', '', '', '', 0),
+(180, '030504', 'Shakiratu', 'Yakubu', '08067530447', '', '', '', 0),
+(181, '028633', 'Omomulere', 'Ayiri', '8136624851', '', '', '', 0),
+(182, '026149', 'Okolo', 'Embugus', '07065781823', '', '', '', 0),
+(183, '022687', 'Nelly', 'Akadu', '07034460676', '', '', '', 0),
+(184, '020922', 'Oweazim', 'Charles', '08064285765', '', '', '', 0),
+(185, '024937', 'Ojugbeli-Chuks', 'Iroro', '08039158068', '', '', '', 0),
+(186, '024937', 'Ojugbeli-Chuks', 'Iroro', '08039158068', '', '', '', 0),
+(187, '019994', 'Ukiri', 'O', '7038226594', '', '', '', 0),
+(188, '004357', 'Nyong', 'Anthony', '07034387578', '', '', '', 0),
+(189, '004720', 'Akperi', 'Austine', '08124087881', '', '', '', 0),
+(190, '028101', 'Ekemini', 'Bassey', '07032878423', '', '', '', 0),
+(191, '017503', 'SULEIMAN', 'Yunusa', '+2348065562625', '', '', '', 0),
+(192, '007966', 'ANZAH', 'KATOH', '08060343693', '', '', '', 0),
+(193, '024553', 'Nufin-Allah', 'Mbanan', '813860733', '', '', '', 0),
+(194, '025445', 'OBISESAN', 'Idowu', '07036563075', '', '', '', 0),
+(195, '011941', 'DEMEHIN', 'Isaac', '08034857499', '', '', '', 0),
+(196, '017326', 'Eddie,', 'Aniedi', '7039488947', '', '', '', 0),
+(197, '014979', 'Sema', 'Sokpo', '036277118', '', '', '', 0),
+(198, '020778', 'Moses', 'Avreson', '07037677373', '', '', '', 0),
+(199, '018766', 'Taibat', 'aliyu', '08069336153', '', '', '', 0),
+(200, '009444', 'Idiodemise', 'Igho', '08037404012', '', '', '', 0),
+(201, '011075', 'Ablaku', 'Ato', '7036321943', '', '', '', 0),
+(202, '025777', 'Victoria', 'okon', '07068402783', '', '', '', 0),
+(203, '007752', 'Okugbeni', 'Modupe', '08035024124', '', '', '', 0),
+(204, '007883 ', 'OYETUNDE', 'AJAYI', '+2348034649026', '', '', '', 0),
+(205, '008491', 'Sangolana', 'Akintayo', '08186303646', '', '', '', 0),
+(206, '011961', 'Oyinlade', 'Kehinde', '08023927919', '', '', '', 0),
+(207, '025560', 'EFEUNU', 'Eruore', '08135006910', '', '', '', 0),
+(208, '025560', 'EFEUNU', 'Eruore', '08135006910', '', '', '', 0),
+(209, '023039', 'MUHAMMAD', 'USMAN', '07030073747', '', '', '', 0),
+(210, '011394', 'Saadatu', 'Yahaya', '+2348137667659', '', '', '', 0),
+(211, '013881', 'Oguntokun', 'Jumoke', '07030751470', '', '', '', 0),
+(212, '013881', 'Oguntokun', 'Jumoke', '07030751470', '', '', '', 0),
+(213, '013881', 'Oguntokun', 'Jumoke', '07030751470', '', '', '', 0),
+(214, '022307', 'Ibegwam', 'Amarachi', '07084161614', '', '', '', 0),
+(215, '029393', 'Abdulfattah', 'Baba', '08032063324', '', '', '', 0),
+(216, '025549', 'Adegbenro', 'Baliques', '08033944994', '', '', '', 0),
+(217, '021037', 'ONIMISI', '', '08062947363', '', '', '', 0),
+(218, '021037', 'ONIMISI', '', '08062947363', '', '', '', 0),
+(219, '021037', 'ONIMISI', '', '08062947363', '', '', '', 0),
+(220, '021037', 'ONIMISI', '', '08062947363', '', '', '', 0),
+(221, '015078', 'OGECHUKWU', 'UKWUABA', '09098116842', '', '', '', 0),
+(222, '026994', 'Abdulkadir', 'Ibrahim', '8064018210', '', '', '', 0),
+(223, '026994', 'Abdulkadir', 'Ibrahim', '8064018210', '', '', '', 0),
+(224, '004642', 'Yakubu', 'Isah', '08036292866', '', '', '', 0),
+(225, '017270', 'Idodo', 'Eloho', '07035387455', '', '', '', 0),
+(226, '030660', 'ANAJA', 'NOAH', '07031071758', '', '', '', 0),
+(227, '020288', 'Emenike', 'sandra Onaedo', '07033494865', '', '', '', 0),
+(228, '006344', 'Ibeme', 'Thuke', '8082036108', '', '', '', 0),
+(229, '028622', 'Abdulrahman', 'idris', '08164943113', '', '', '', 0),
+(230, '008263', 'Cordelia', 'Drai', '08104791315', '', '', '', 0),
+(231, '004208', 'LAWAL', 'Mohammed', '08054429838', '', '', '', 0),
+(232, '008684', 'Kilani', 'Adewale', '08035882544', '', '', '', 0),
+(233, '005929', 'BARDE', 'UMORU', '08066038675', '', '', '', 0),
+(234, '007419', 'HENRY', 'ODIGURE', '08032318121', '', '', '', 0),
+(235, '025049', 'Johnbosco', 'Egwu', '08072516187', '', '', '', 0),
+(236, '019615', 'Usoro,Imaobong', 'Sylvester', '08065101197', '', '', '', 0),
+(237, '023426', 'Iniobong', 'Usen', '08030760590', '', '', '', 0),
+(238, '022483', 'Abubakar', 'Sani', '08162508026', '', '', '', 0),
+(239, '006186', 'ISAH', 'ANGULU', '08035214854', '', '', '', 0),
+(240, '026191', 'Ziworitin', 'Ebimoboere', '07064529305', '', '', '', 0),
+(241, '021102', 'Idorenyin', '', '7033841573', '', '', '', 0),
+(242, '023598', 'Hamisu', 'Yusuf', '07036877249', '', '', '', 0),
+(243, '023964', 'Yaya', 'Ahmed', '07063173017', '', '', '', 0),
+(244, '001212', 'Ekwere', 'Edem', '+2348106659970', '', '', '', 0),
+(245, '022512', 'OLUEBUBE', 'ILONWA', '08035627810', '', '', '', 0),
+(246, '006022', 'Rasheed', 'Abiola', '08099904797', '', '', '', 0),
+(247, '029034', 'David', 'Ndubuisi', '08060230792', '', '', '', 0),
+(248, '015862', 'Katherine', 'Otutu', '07063672735', '', '', '', 0),
+(249, '022980', 'Adamu', 'Muhammad', '07036354304', '', '', '', 0),
+(250, '020394', 'AIYANYOR', 'OMORODION', '8034613573', '', '', '', 0),
+(251, '015845', 'Michael', 'Inegbenebor', '08082150778', '', '', '', 0),
+(252, '024192', 'Olumide', 'Ibikunle', '08130970982', '', '', '', 0),
+(253, '005002', 'MOHAMMED', 'ABDULLAHI', '07054676301', '', '', '', 0),
+(254, '015488', 'Esi-Igho', 'Melis', '07036798722', '', '', '', 0),
+(255, '008435', 'Olagunju', 'Bolaji', '07030572252', '', '', '', 0),
+(256, '018445', 'Kassam', 'Danjuma', '07067676189', '', '', '', 0),
+(257, '029618', 'Mubarak', 'Yusuf', '08135863643', '', '', '', 0),
+(258, '029787', 'Jibrin', 'Yaro', '08100343666', '', '', '', 0),
+(259, '025907', 'Edikan', 'Akpan', '07018345629', '', '', '', 0),
+(260, '019595', 'Edet', 'Wilson', '07031825057', '', '', '', 0),
+(261, '009542', 'Ogbuchi', 'Nneka', '08035880808', '', '', '', 0),
+(262, '023092', 'Awunor', 'Teyiremi', '7036171822', '', '', '', 0),
+(263, '023854', 'Alakwem', 'Josephat', '7032397191', '', '', '', 0),
+(264, '025355', 'OKECHI', 'CHIKADIBIA', '07032145196', '', '', '', 0),
+(265, '026574', 'Armaya\'u', 'Audi', '8064327070', '', '', '', 0),
+(266, '019222', 'Bako', 'Benjamin', '7030383731', '', '', '', 0),
+(267, '015651', 'PHILLIP', 'OPEYEMI', '08067504109', '', '', '', 0),
+(268, '017848', 'ROSEMARY', 'ISAH', '08051797301', '', '', '', 0),
+(269, '003998', 'AHMED', 'NDAGI', '08035909555', '', '', '', 0),
+(270, '019807', 'Babangida', 'Mohammed', '07032038020', '', '', '', 0),
+(271, '029419', 'Aminu', 'Kano', '08134714995', '', '', '', 0),
+(272, '029419', 'Aminu', 'Kano', '08134714995', '', '', '', 0),
+(273, '028563', 'Nanbal', 'Joel', '08035003495', '', '', '', 0),
+(274, '023899', 'Abdullahi', 'Abdulsalam', '07030995919', '', '', '', 0),
+(275, '019023', 'Ohinoyi', 'Garido', '08062526740', '', '', '', 0),
+(276, '030039', 'Edemigha', 'Pereowei', '07065760105', '', '', '', 0),
+(277, '029103', 'Tughgba', 'Hembadoon', '08065901458', '', '', '', 0),
+(278, 'NIG2021ADCF7A', 'Uche', 'Ogechi', '+2348105493321', '', '', '', 0),
+(279, '004302', 'Aisha', 'Tukur', '08035968236', '', '', '', 0),
+(280, '015255', 'Moukhtar', 'Karofi', '08034167621', '', '', '', 0),
+(281, '026513', 'Emmanuel', 'Andoro', 'O8143119180', '', '', '', 0),
+(282, '019083', 'SULE', 'NEMEN', '07036191030', '', '', '', 0),
+(283, '012787', 'AFUNANYA', 'GODWIN', '08174447007', '', '', '', 0),
+(284, '018011', 'DUWAM', 'NAKAKA', '08101112264', '', '', '', 0),
+(285, '019091', 'Johnpaul', 'Ibe', '7034596177', '', '', '', 0),
+(286, '020651', 'Aghahowa', 'Osahenrhumwen', '7033625400', '', '', '', 0),
+(287, '024275', 'Legemah', 'Esther', '7037836963', '', '', '', 0),
+(288, '004506', 'ADEGOKE', 'OLUSOLA', '08033613907', '', '', '', 0),
+(289, '024551', 'Garuba', 'Sunday', '07030177480', '', '', '', 0),
+(290, '019422', 'Aishatu', 'Allawa', '08069228213', '', '', '', 0),
+(291, '002382', 'Olatona', 'Olusola', '08060060580', '', '', '', 0),
+(292, '020565', 'Okiti', 'Nnebuogo', '08134145084', '', '', '', 0),
+(293, '003914', 'Cyril', 'Usifoh', '8032567723', '', '', '', 0),
+(294, '004851', 'Kelly', 'Nwagha', '+2348034063805', '', '', '', 0),
+(295, '017257', 'Samuel', 'Edomwande', '+2348039483233', '', '', '', 0),
+(296, '011103', 'ONYEMA', 'IFEANYICHUKWU', '07031642004', '', '', '', 0),
+(297, '021080', 'Faith', 'Agamah', '7031396885', '', '', '', 0),
+(298, '030484', 'Yusuf', 'lafe', '8166477451', '', '', '', 0),
+(299, '028311', 'Udemezue', 'Christian', '+2347064762466', '', '', '', 0),
+(300, '005247', 'Ogunmade', 'Olufemi', '08033512301', '', '', '', 0),
+(301, '018251', 'Ahmadu', 'Ebenezer', '07039638411', '', '', '', 0),
+(302, '003766', 'MARY', 'EBIRINGAH', '08168627829', '', '', '', 0),
+(303, '015249', 'Micheal', 'Esa', '9036853612', '', '', '', 0),
+(304, '029076', 'SHAMWEEL', 'AHMED', '08068316880', '', '', '', 0),
+(305, '019738', 'Nwagbo', 'Nnanna', '08098126790', '', '', '', 0),
+(306, '008440', 'Ajani', 'Aderemi', '8052829200', '', '', '', 0),
+(307, '013967', 'Jennifer', 'Osemudiamen', '7036369167', '', '', '', 0),
+(308, '026558', 'Ntiido', 'Aniekan', '08107932192', '', '', '', 0),
+(309, '022527', 'Ibrahim', 'Halilu', '08064293421', '', '', '', 0),
+(310, '025217', 'Osamudiamen', 'Umweni', '08067516911', '', '', '', 0),
+(311, '008801', 'Aniobi', 'Gladys', '08032914998', '', '', '', 0),
+(312, '027812', 'Nwakor', 'Anthony', '08144144861', '', '', '', 0),
+(313, '026154', 'Abdullahi', 'Usman', '08137857688', '', '', '', 0),
+(314, '011465', 'Pharm', 'Samuel', '08065747640', '', '', '', 0),
+(315, '027183', 'ADAM', 'ZAINAB', '09028699991', '', '', '', 0),
+(316, '002048', 'ODUMUYIWA', 'SIMEON', '09038218230', '', '', '', 0),
+(317, '006680', 'KOMOLAFE', 'OLUSEGUN', '08034088756', '', '', '', 0),
+(318, '020282', 'AKINRINMADE', 'KAYODE', '08061232630', '', '', '', 0),
+(319, '028941', 'MUHAMMED', 'ALHAJI', '08065015315', '', '', '', 0),
+(320, '028941', 'MUHAMMED', 'ALHAJI', '08065015315', '', '', '', 0),
+(321, '028941', 'MUHAMMED', 'ALHAJI', '08065015315', '', '', '', 0),
+(322, '021576', 'Asogwa', 'Nkiruka', '08063674962', '', '', '', 0),
+(323, '017346', 'SHEHU', 'MAGAJI', '07035405958', '', '', '', 0),
+(324, '011912', 'Onyeibor', 'Irene', '07057236485', '', '', '', 0),
+(325, '026623', 'Nwankwo', 'Chiderah', '08063101021', '', '', '', 0),
+(326, 'PCN/G/0012268', 'Taiwo', 'Abayomi-Ola', '08168053246', '', '', '', 0),
+(327, '023350', 'Moses', 'Faith', '8033243942', '', '', '', 0),
+(328, '019955', 'Yusuf', 'Alkali', '08069048356', '', '', '', 0),
+(329, '023979', 'Datong', 'Gideon', '8147626261', '', '', '', 0),
+(330, '027186', 'Ihuoma', 'Kelechi', '09034211353', '', '', '', 0),
+(331, '010791', 'Egga', 'Kudu', '08035797070', '', '', '', 0),
+(332, '018396', 'Idiong', 'Joseph', '08030976623', '', '', '', 0),
+(333, '028869', 'Mevayovor', 'O.', '07061923247', '', '', '', 0),
+(334, '023475', 'ODUGBOSE', 'BUKUNMI', '+2347063553514', '', '', '', 0),
+(335, '017768', 'Sani', 'Zainab', '07069493513', '', '', '', 0),
+(336, '023102', 'Emmanuel', 'Okoh', '8038890755', '', '', '', 0),
+(337, '006604', 'Oluwayemi', 'David', '9014242143', '', '', '', 0),
+(338, '027783', 'Onyia', 'Chisom', '09032925741', '', '', '', 0),
+(339, '023945', 'Emmanuel', 'Yusuf', '8035590857', '', '', '', 0),
+(340, '004672', 'Priscilla', 'Bezi', '08063834106', '', '', '', 0),
+(341, '015453', 'Aigbe', 'Eromon', '08034319471', '', '', '', 0),
+(342, '014290', 'Ugwuanyi', 'Okechukwu', '09066727132', '', '', '', 0),
+(343, '029944', 'Maryam', 'Chindo', '07033331186', '', '', '', 0),
+(344, '021664', 'Hadiza', 'Hassan', '08166146622', '', '', '', 0),
+(345, '027090', 'DAVID', 'Nicholas', '07034418664', '', '', '', 0),
+(346, '028567', 'Nnenna', 'Nwachukwu', '8037252944', '', '', '', 0),
+(347, '006247', 'Lasisi', 'S', '07064852154', '', '', '', 0),
+(348, '006247', 'Lasisi', 'S', '07064852154', '', '', '', 0),
+(349, '027926', 'Wodi', 'Yusuf', '08167768338', '', '', '', 0),
+(350, '030068', 'Usman', 'Kudu', '08138081553', '', '', '', 0),
+(351, '030068', 'Usman', 'Kudu', '08138081553', '', '', '', 0),
+(352, '019152', 'Maisamari', 'Fidelis', '08069619364', '', '', '', 0),
+(353, '003674', 'Felicia', 'Lawrence', '08023337068', '', '', '', 0),
+(354, '030977', 'Izunwanne', 'Uchechi', '08129178307', '', '', '', 0),
+(355, '002293', 'Ojo', 'Adebisi', '08034009610', '', '', '', 0),
+(356, '007544', 'AJIE', 'Stanley', '8035520876', '', '', '', 0),
+(357, '002976', 'Oluwole', 'Simon', '08023056741', '', '', '', 0),
+(358, '030969', 'Muhammad', 'Aminu', '07067107199', '', '', '', 0),
+(359, '007895', 'Felix', 'Adedoyin', '08055062599', '', '', '', 0),
+(360, '028388', 'Blessed', 'Okhilua', '7038471898', '', '', '', 0),
+(361, '016867', 'Obodozie', 'Uche', '7063350037', '', '', '', 0),
+(362, '023330', 'IFEDIMMA', 'ONYEKA', '07039407106', '', '', '', 0),
+(363, '020970', 'Usman', 'Salihu', '08066926694', '', '', '', 0),
+(364, '016571', 'SIMON', 'KUJE', '8036176889', '', '', '', 0),
+(365, '014824', 'ADELEKE', 'ABOSEDE', '08066319482', '', '', '', 0),
+(366, '008284', 'Adeyemo', 'Ezekiel', '080-333-2587', '', '', '', 0),
+(367, '023646', 'IDOKO', 'JOHN', '07031648113', '', '', '', 0),
+(368, '020681', 'evelyn', 'Nkeze', '07060503990', '', '', '', 0),
+(369, '002264', 'Olufunke', 'Sodipo', '8034107098', '', '', '', 0),
+(370, '081428', 'Odong', 'Udoh', '8026568857', '', '', '', 0),
+(371, '001595', 'SHEM', 'NUHU', '07034012121', '', '', '', 0),
+(372, '012037', 'ONUORAH', 'NNEDIMMA', '8037095993', '', '', '', 0),
+(373, '004497', 'OBASEKI', 'ANGELA', '8023582497', '', '', '', 0),
+(374, '0013863', 'ONYEGASI', 'STELLA', '8151912938', '', '', '', 0),
+(375, '007176', 'ETUKNWA,', 'MABEL', '+2348035103429', '', '', '', 0),
+(376, '020838', 'Isioma', 'Okoegwa', '08130975637', '', '', '', 0),
+(377, '019935', 'Ekezie', 'Chioma', '08144843524', '', '', '', 0),
+(378, '023344', 'Omeje', 'Ukamaka', '08066546819', '', '', '', 0),
+(379, '023469', 'Elachi', 'Ene ', '0806347781', '', '', '', 0),
+(380, '001231', 'Comfort', 'Ekabua', '08035716126', '', '', '', 0),
+(381, '007709', 'Okwor', 'Kenneth', '08035903289', '', '', '', 0),
+(382, '022190', 'Mohammed', 'Salisu', '70354636438', '', '', '', 0),
+(383, '022190', 'Mohammed', 'Salisu', '70354636438', '', '', '', 0),
+(384, '022190', 'Mohammed', 'Salisu', '70354636438', '', '', '', 0),
+(385, '022190', 'Mohammed', 'Salisu', '70354636438', '', '', '', 0),
+(386, '022190', 'Mohammed', 'Salisu', '70354636438', '', '', '', 0),
+(387, '022190', 'Mohammed', 'Salisu', '70354636438', '', '', '', 0),
+(388, '019283', 'Oghenero', 'Akpore', '08036819335', '', '', '', 0),
+(389, '017260', 'Emeje', 'Ruth', '07032198955', '', '', '', 0),
+(390, '023432', 'Yatar', 'Awase', '7061888361', '', '', '', 0),
+(391, 'PLA2022BCF2B6', 'KAMJI', 'MANJI', '09060732505', '', '', '', 0),
+(392, '007138', 'SALISU', 'NAUZO', '08036281543', '', '', '', 0),
+(393, '026367', 'Odudu', 'Etukudo', '+108180381468', '', '', '', 0),
+(394, '030367', 'IBRAHIM', 'AMINU', '7088253147', '', '', '', 0),
+(395, '010698', 'Ossai', 'Deborah', '8037080523', '', '', '', 0),
+(396, '018549', 'Yale', 'Monday', '9136148796', '', '', '', 0),
+(397, '001844', 'Ochonu,', 'Ogbu', '08033216804', '', '', '', 0),
+(398, '023596', 'PAUL', 'DOGO', '7036700209', '', '', '', 0),
+(399, '002515', 'SABA', 'NDANA', '8033226738', '', '', '', 0),
+(400, '029024', 'AHANDA', 'MEDUGU', '8135954079', '', '', '', 0),
+(401, '029274', 'Suraiya', 'Makun', '07062398238', '', '', '', 0),
+(402, '007625', 'Benjamin', 'Nkwocha', '08028265257', '', '', '', 0),
+(403, '012966', 'Ezeagwuna', 'Ikechukwu', '7037962857', '', '', '', 0),
+(404, '001756', 'SIDI', 'T', '08145942139', '', '', '', 0),
+(405, '021539', 'Salihu', 'Baba', '08068566087', '', '', '', 0),
+(406, '021652', 'Muhammad', 'Saeed', '07035537437', '', '', '', 0),
+(407, '021652', 'Muhammad', 'Saeed', '07035537437', '', '', '', 0),
+(408, '015050', 'Dania', 'Victor', '08066884977', '', '', '', 0),
+(409, '017862', 'EZE', 'CHINASA', '08064293389', '', '', '', 0),
+(410, '020002', 'Idogwu', 'Nneka', '07037554149', '', '', '', 0),
+(411, '028624', 'ABUBAKAR', 'MOHAMMED', '07061038610', '', '', '', 0),
+(412, '015439', 'NIMBANG', 'WUYEP', '07030324045', '', '', '', 0),
+(413, '021586', 'Moses', 'Abike', '08162530569', '', '', '', 0),
+(414, '01381', 'Okeke', '', '7038469020', '', '', '', 0),
+(415, '022780', 'Mustafa', 'Aisha', '08162843250', '', '', '', 0),
+(416, '015954', 'HOSEA,', 'Yunana', '8062091290', '', '', '', 0),
+(417, '020792', 'Ibrahim', 'Usman', '07067707182', '', '', '', 0),
+(418, '006939', 'Bala', 'Shuaibu', '8032860463', '', '', '', 0),
+(419, '016778', 'Archibong,Mary', 'Vitalis', '8137786265', '', '', '', 0),
+(420, '014654', 'UGWU', 'CHINWE', '08064153409', '', '', '', 0),
+(421, '020242', 'Chukwudi', 'MEKWUNYEI', '08061500301', '', '', '', 0),
+(422, '020224', 'Etubi', 'Eleojo', '07060638765', '', '', '', 0),
+(423, '027198', 'Joseph', 'Aduma', '8064369474', '', '', '', 0),
+(424, '022391', 'Maikudi', 'Dwachon', '7033203260', '', '', '', 0),
+(425, '017571', 'Edache', 'Ngbede', '8063301788', '', '', '', 0),
+(426, '009866', 'Olabode', 'Rasheed', '8039401989', '', '', '', 0),
+(427, '016439', 'Ejiroghene', 'Akem', '+2348051291897', '', '', '', 0),
+(428, '021506', 'Zainab', '', '07036664064', '', '', '', 0),
+(429, '003933', 'GANA', 'GANA', '08036005551', '', '', '', 0),
+(430, '008594', 'Aniagboso', 'onyinye', '8033902567', '', '', '', 0),
+(431, '004370', 'Patricia', 'Chinwuba', '07037914797', '', '', '', 0),
+(432, '013773', 'Oluwakemi', 'Oladejo', '8034431543', '', '', '', 0),
+(433, '006527', 'Ibinola', 'Tayo', '08023622437', '', '', '', 0),
+(434, '016381', 'Nafisah', 'Yahuza', '7030535515', '', '', '', 0),
+(435, '001486', 'Eunice', 'Ajayi', '8035929076', '', '', '', 0),
+(436, '019313', 'EMMANUEL', 'ITODO', '8036368829', '', '', '', 0),
+(437, '016528', 'Comfort', 'Idio', '08028729429', '', '', '', 0),
+(438, '012460', 'Omotola', 'Oladigbolu', '08155572579', '', '', '', 0),
+(439, '029336', 'Abdulsalam', 'Abdullateef', '8160992741', '', '', '', 0),
+(440, '027145', 'UZUH', 'FELICITA', '8165887040', '', '', '', 0),
+(441, '010815', 'Adizue', 'Chinyere', '08033469460', '', '', '', 0),
+(442, '018990', 'Abraham', 'Solomon', '8065716772', '', '', '', 0),
+(443, '018227', 'Udoh,Faith', 'A', '08181203657', '', '', '', 0),
+(444, '016552', 'Ibeh', 'William', '08035600494', '', '', '', 0),
+(445, '007524', 'TITUS', 'SHEKARAU', '08065306460', '', '', '', 0),
+(446, '015258', 'BONIRE', 'EBUNOLUWA', '08069554768', '', '', '', 0),
+(447, '008804', 'ODIBA', 'ONALO', '08033148984', '', '', '', 0),
+(448, '005529', 'ABDULRAZAQ', 'AYUBA', '08035924926', '', '', '', 0),
+(449, '005076', 'Okalanedu', 'Enyeobi', '08036328752', '', '', '', 0),
+(450, '005076', 'Okalanedu', 'Enyeobi', '08036328752', '', '', '', 0),
+(451, '005076', 'Okalanedu', 'Enyeobi', '08036328752', '', '', '', 0),
+(452, '014622', 'Anwana', 'Edem', '8067260044', '', '', '', 0),
+(453, '030410', 'George', 'Kareen', '08142329266', '', '', '', 0),
+(454, '005415', 'Alabor', 'Uduoghene', '8034697440', '', '', '', 0),
+(455, '010691', 'Olutimayin', 'Ayolekan', '8033501121', '', '', '', 0),
+(456, '010833', 'OBI', 'ADIGWE', '+2348053664795', '', '', '', 0),
+(457, '027049', 'KHALID', 'KASIM', '08065302510', '', '', '', 0),
+(458, '002395', 'Samuel', 'Olawale', '8057154167', '', '', '', 0),
+(459, '019182', 'OWOICHO', 'FRIDAY', '7033415114', '', '', '', 0),
+(460, '018941', 'ABIDEMI', '', '08072930652', '', '', '', 0),
+(461, '005127', 'ODEYEMI,', 'OLATUNDE', '8035871757', '', '', '', 0),
+(462, '019274', 'Urama', 'Cheta', '8033047179', '', '', '', 0),
+(463, '020931', 'Bilkisu', 'Musa', '07031891805', '', '', '', 0),
+(464, '021711', 'Zainab', '', '08032541403', '', '', '', 0),
+(465, '021711', 'Zainab', '', '08032541403', '', '', '', 0),
+(466, '029395', 'Okpara', 'jacinta', '09039247525', '', '', '', 0),
+(467, '006103', 'Angless', 'Omovuakpor', '08033769784', '', '', '', 0),
+(468, '026570', 'OKORO', 'EMMANUEL', '08067661661', '', '', '', 0),
+(469, '005986', 'BILKISU', 'UMAR', '08032200702', '', '', '', 0),
+(470, '024249', 'Ishaq', 'Ize', '08157471866', '', '', '', 0),
+(471, '017328', 'ABUBAKAR', 'IBRAHIM', '08037462111', '', '', '', 0),
+(472, '013713', 'AKINLOYE', 'BOLAJI', '08036580440', '', '', '', 0),
+(473, '025658', 'Hadiza', 'Umar', '08139105328', '', '', '', 0),
+(474, '017590', 'Ighedo', 'Erhiga', '08157588326', '', '', '', 0),
+(475, '012340', 'Linus', 'Okafor', '8035369036', '', '', '', 0),
+(476, '014839', 'John', 'Dazhi', '08145365650', '', '', '', 0),
+(477, '006554', 'Ndubueze', 'Onyinyechi', '08084339843', '', '', '', 0),
+(478, '008573', 'Nwokocha', 'Ngozi', '8036729459', '', '', '', 0),
+(479, '010032', 'Anietie', 'Essien', '08025534053', '', '', '', 0),
+(480, '028769', 'Alagbogu', 'Victor', '07035746724', '', '', '', 0),
+(481, '028777', 'Chukwueloka', 'Maduegbuna', '08063305475', '', '', '', 0),
+(482, '021589', 'Nwosu', 'Angela', '07033513084', '', '', '', 0),
+(483, '019833', 'Suleiman', 'Surajudeen', '8035028431', '', '', '', 0),
+(484, '012936', 'Salami', 'Saheedat', '08036206290', '', '', '', 0),
+(485, '002298', 'Abdulmaliki', '', '08035828598', '', '', '', 0),
+(486, '002298', 'Abdulmaliki', '', '08035828598', '', '', '', 0),
+(487, '012535', 'Omonoju', '', '8091313789', '', '', '', 0),
+(488, '003819', 'DOKUBO', 'FUNMILAYO', '08033126809', '', '', '', 0),
+(489, '026489', 'Ajari', 'Happy', '08136146066', '', '', '', 0),
+(490, '006258', 'Idialu', 'Iribhogbe', '8068054533', '', '', '', 0),
+(491, '016655', 'Nwasoma', 'Chika', '+2348037528830', '', '', '', 0),
+(492, '029596', 'JOSEPH', 'EMMANUEL', '08104224104', '', '', '', 0),
+(493, '000558', 'EDNA', 'ISEWANU', '08050600529', '', '', '', 0),
+(494, '023698', 'OGBEMUDIA', 'ANITA', '07061829789', '', '', '', 0),
+(495, '002754', 'Balarabe', 'Halilu', '08030730720', '', '', '', 0),
+(496, '019025', 'ISMAHEEL', 'OMOLARA', '8038039382', '', '', '', 0),
+(497, '009260', 'Ojeah', 'Ozioma', '8037956306', '', '', '', 0),
+(498, '030438', 'Musa', 'Abraham', '07033829582', '', '', '', 0),
+(499, '007364', 'Ogundele', 'Omolara', '08056665898', '', '', '', 0),
+(500, '024594', 'Ejovi', 'Eguono', '08103398534', '', '', '', 0),
+(501, '010980', 'Ikenna', 'Apakama', '07083102007', '', '', '', 0),
+(502, '006743', 'Olaoye', 'Oluwasegun', '8034918581', '', '', '', 0),
+(503, '020271', 'Alabi', 'Omoniyi', '8035285580', '', '', '', 0),
+(504, '029799', 'Enomate', 'Ejiroghene', '08063588816', '', '', '', 0),
+(505, '029376', 'Yahaya', 'Attahiru', '07031139827', '', '', '', 0),
+(506, '013092', 'Daniels', 'Peter', '8080652443', '', '', '', 0),
+(507, '021241', 'Adeyemi', 'Ishola', '08139298511', '', '', '', 0),
+(508, '003651', 'Onuoha', 'Egbule', '8036240624', '', '', '', 0),
+(509, '031094', 'Ozigbo', 'Francis', '08166714330', '', '', '', 0),
+(510, '017954', 'Kutemi', 'Omuya', '08036253978', '', '', '', 0),
+(511, '027521', 'Azeez', 'akangbe', '8165765544', '', '', '', 0),
+(512, '008126', 'Akinmade', 'Fatai', '8023057425', '', '', '', 0),
+(513, '016524', 'Allen', 'Ofili', '08063859195', '', '', '', 0),
+(514, '016524', 'Allen', 'Ofili', '08063859195', '', '', '', 0),
+(515, '006901', 'Chinedu', 'Okolo', '+234 803 582 1474', '', '', '', 0),
+(516, '002961', 'Victoria', 'Ukwu', '08033489443', '', '', '', 0),
+(517, '002489', 'Saadu', 'Dangana', '07031166077', '', '', '', 0),
+(518, '012999', 'GANNA', 'ABUBAKAR', '08036013461', '', '', '', 0),
+(519, '019792', 'EnoAbasi', 'Ntekpe', '07063301330', '', '', '', 0),
+(520, '026266', 'Zakariyya', 'ABDULLAHI', '08168673900', '', '', '', 0),
+(521, '012876', 'Abubakar', 'Danraka', '8066038675', '', '', '', 0),
+(522, '021675', 'Ibrahim', 'Adesina', '7036436985', '', '', '', 0),
+(523, '007064', 'Anthony', 'Idoko', '8033308829', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -254,7 +715,7 @@ INSERT INTO `paid_members` (`payment_id`, `pcn_number`, `first_name`, `last_name
 
 CREATE TABLE `request_hotel` (
   `request_id` int(11) NOT NULL,
-  `pcn_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `requester` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `hotel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `room` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `request_status` int(11) NOT NULL,
@@ -266,6 +727,14 @@ CREATE TABLE `request_hotel` (
   `bulk_evidence` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
   `amount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `request_hotel`
+--
+
+INSERT INTO `request_hotel` (`request_id`, `requester`, `hotel`, `room`, `request_status`, `request_date`, `request_by`, `payment_evidence`, `check_in_date`, `bulk`, `bulk_evidence`, `amount`) VALUES
+(40, '135', 'Baiden Baiden', 'Business Suite', 1, '2023-04-03 15:41:33', '135', '', '2023-07-24', 0, '', 40000),
+(41, '134', 'Morzi Hotels', 'Standard Room', 1, '2023-04-03 22:00:09', '134', '', '2023-07-24', 0, '', 22000);
 
 -- --------------------------------------------------------
 
@@ -286,31 +755,38 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`room_id`, `hotel`, `room`, `price`, `room_quantity`) VALUES
-(22, 'Baiden Baiden', 'Standard Room', 20000, 3),
-(23, 'Baiden Baiden', 'Business Suite', 40000, 5),
-(24, 'Morzi Hotels', 'Standard Room', 22000, 8),
-(25, 'Morzi Hotels', 'Exquisite Room', 43000, 3),
+(22, 'Baiden Baiden', 'Standard Room', 20000, 1),
+(23, 'Baiden Baiden', 'Business Suite', 40000, 3),
+(24, 'Morzi Hotels', 'Standard Room', 22000, 7),
+(25, 'Morzi Hotels', 'Exquisite Room', 43000, 1),
 (26, 'Uyi Grand Hotel', 'Basic Room', 17000, 13),
-(27, 'Uyi Grand Hotel', 'Royal Suite', 56000, 2);
+(27, 'Uyi Grand Hotel', 'Royal Suite', 56000, 0),
+(28, 'Windy Hill Hotels', 'Royal Suites', 60000, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shoppers`
+-- Table structure for table `surveys`
 --
 
-CREATE TABLE `shoppers` (
-  `user_id` int(11) NOT NULL,
-  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pharmacy` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `reg_date` datetime NOT NULL DEFAULT current_timestamp()
+CREATE TABLE `surveys` (
+  `survey_id` int(11) NOT NULL,
+  `delegate` int(11) NOT NULL,
+  `satisfaction` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `elements` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `registration` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `topics` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `speakers` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `surveys`
+--
+
+INSERT INTO `surveys` (`survey_id`, `delegate`, `satisfaction`, `elements`, `registration`, `topics`, `speakers`, `post_date`) VALUES
+(9, 8, 'Satisfied', 'kljfakljlkjklv lkjlkc', 'klajckl cjlkjklj', 'jnalckjlk jkljk', 'Satisfied', '2023-05-27 10:16:50'),
+(10, 8, '', '', '', '', '', '2023-05-29 10:52:27');
 
 -- --------------------------------------------------------
 
@@ -322,30 +798,53 @@ CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `first_name` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pcn_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `res_state` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pcn_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `res_state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `whatsapp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `other_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `other_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `passport` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payment_receipt` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payment_receipt` varchar(1024) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `reg_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `reg_date` datetime NOT NULL DEFAULT current_timestamp(),
   `payment_status` int(11) NOT NULL,
   `attendance` int(11) NOT NULL,
-  `gender` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `gender` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fellow` int(11) NOT NULL,
+  `tech_group` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `interest_group` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `guest_type` int(11) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `guest_password` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fee` int(11) DEFAULT NULL,
+  `barcode` varchar(1055) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `transaction_num` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `onsite_delegate` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `pcn_number`, `res_state`, `whatsapp`, `other_number`, `user_email`, `passport`, `payment_receipt`, `reg_number`, `reg_date`, `payment_status`, `attendance`, `gender`) VALUES
-(76, '', 'Admin', '12345', '', '', '', '', '', '', '', '2022-03-14 08:54:45', 0, 0, '');
+INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `user_type`, `pcn_number`, `res_state`, `whatsapp`, `other_number`, `user_email`, `passport`, `payment_receipt`, `reg_number`, `reg_date`, `payment_status`, `attendance`, `gender`, `fellow`, `tech_group`, `interest_group`, `guest_type`, `dob`, `guest_password`, `country`, `fee`, `barcode`, `transaction_num`, `onsite_delegate`) VALUES
+(1, '', 'Admin', '', '123456', '', '', '', '', '', '', '', '2023-02-06 05:07:04', 0, 0, '', 0, '', NULL, 0, NULL, '', '', 0, '', '', 0),
+(2, 'User', 'User', '', '222222', NULL, '', NULL, '', '', NULL, '', '2023-05-21 09:07:35', 0, 0, '', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, 0),
+(7, 'Dorcas', 'Faniran', 'Guest', NULL, NULL, '07068897068', NULL, 'onostarmedia@gmail.com', 'chef pee.png', NULL, 'GUEST/2023/007', '2023-05-24 16:10:32', 0, 0, 'Male', 0, NULL, NULL, 4, '2010-02-22', 'ymcmbhero', 'Algeria', 20000, '1603842657', NULL, 0),
+(8, 'kelly', 'ikpefua', 'Delegate', '425716', 'Edo', '07068897068', '', 'onostarkels@gmail.com', 'Saitama.webp', NULL, 'EDO/2023/01/08', '2023-05-26 15:08:20', 2, 2, 'Male', 0, 'ACPN', '', NULL, NULL, NULL, 'Nigeria', NULL, '1011715928', NULL, 0),
+(9, 'odjegba', 'onoriode', 'Delegate', '031751', 'Edo', '07064370054', '09090', 'odjegba@mail.com', 'chef pee.png', NULL, 'EDO/2023/02/09', '2023-05-26 15:18:07', 2, 0, 'M', 0, 'NAPA', NULL, NULL, NULL, NULL, 'Nigeria', NULL, '1156416629', NULL, 0),
+(10, 'Chan', 'Jackie', 'Guest', NULL, NULL, '07068897068', NULL, 'jackichan@mail.com', 'chef pee.png', NULL, 'GUEST/2023/0010', '2023-05-27 08:41:48', 0, 0, 'Male', 0, NULL, NULL, 2, '2012-12-31', 'jackie', 'Nigeria', 3000, '17571249510', NULL, 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `attendance`
+--
+ALTER TABLE `attendance`
+  ADD PRIMARY KEY (`attendance_id`);
 
 --
 -- Indexes for table `booths`
@@ -360,16 +859,16 @@ ALTER TABLE `booth_categories`
   ADD PRIMARY KEY (`hall_id`);
 
 --
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`cart_id`);
-
---
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`event_id`);
 
 --
 -- Indexes for table `exhibitors`
@@ -378,28 +877,16 @@ ALTER TABLE `exhibitors`
   ADD PRIMARY KEY (`exhibitor_id`);
 
 --
+-- Indexes for table `guest_types`
+--
+ALTER TABLE `guest_types`
+  ADD PRIMARY KEY (`guest_type_id`);
+
+--
 -- Indexes for table `hotels`
 --
 ALTER TABLE `hotels`
   ADD PRIMARY KEY (`hotel_id`);
-
---
--- Indexes for table `menu`
---
-ALTER TABLE `menu`
-  ADD PRIMARY KEY (`item_id`);
-
---
--- Indexes for table `notifications`
---
-ALTER TABLE `notifications`
-  ADD PRIMARY KEY (`notification_id`);
-
---
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`order_id`);
 
 --
 -- Indexes for table `paid_members`
@@ -420,10 +907,10 @@ ALTER TABLE `rooms`
   ADD PRIMARY KEY (`room_id`);
 
 --
--- Indexes for table `shoppers`
+-- Indexes for table `surveys`
 --
-ALTER TABLE `shoppers`
-  ADD PRIMARY KEY (`user_id`);
+ALTER TABLE `surveys`
+  ADD PRIMARY KEY (`survey_id`);
 
 --
 -- Indexes for table `users`
@@ -436,22 +923,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `attendance`
+--
+ALTER TABLE `attendance`
+  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+
+--
 -- AUTO_INCREMENT for table `booths`
 --
 ALTER TABLE `booths`
-  MODIFY `booth_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `booth_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `booth_categories`
 --
 ALTER TABLE `booth_categories`
-  MODIFY `hall_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `cart`
---
-ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `hall_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -460,64 +947,58 @@ ALTER TABLE `categories`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `exhibitors`
 --
 ALTER TABLE `exhibitors`
-  MODIFY `exhibitor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `exhibitor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `guest_types`
+--
+ALTER TABLE `guest_types`
+  MODIFY `guest_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `hotels`
 --
 ALTER TABLE `hotels`
-  MODIFY `hotel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT for table `menu`
---
-ALTER TABLE `menu`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
-
---
--- AUTO_INCREMENT for table `notifications`
---
-ALTER TABLE `notifications`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `hotel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `paid_members`
 --
 ALTER TABLE `paid_members`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=524;
 
 --
 -- AUTO_INCREMENT for table `request_hotel`
 --
 ALTER TABLE `request_hotel`
-  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT for table `shoppers`
+-- AUTO_INCREMENT for table `surveys`
 --
-ALTER TABLE `shoppers`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `surveys`
+  MODIFY `survey_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

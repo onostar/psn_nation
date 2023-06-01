@@ -48,7 +48,7 @@
                 </ul>
             </li>
             <li><a href="javascript:void(0);" id="surv" title="View surveys" class="page_navs" data-page="survey_list" onclick="showPage('surveys.php')"><i class="fas fa-book"></i> Surveys</a></li>
-            <li style="margin:0 0 100px 0!important"><a href="javascript:void(0);" class="addMenu allMenus" title="manage accomodations"><span><i class="fas fa-hotel"></i> Accomodation </span><span><i class="fas fa-chevron-down"></i></span></a>
+            <li><a href="javascript:void(0);" class="addMenu allMenus" title="manage accomodations"><span><i class="fas fa-hotel"></i> Accomodation </span><span><i class="fas fa-chevron-down"></i></span></a>
                 <ul class="nav1Menu">
                     <!-- <li><a href="javascript:void(0);" id="addMenu" title="View accomodation requests" class="page_navs" data-page="hotel_request" onclick="showPage('confirm_accomod.php')"><i class="fas fa-paper-plane"></i> Accomodation requests</a></li>
                     <li><a href="javascript:void(0);" id="addMenu" title="Approve bulk requests" class="page_navs" data-page="bulk_request" onclick="showPage('confirm_bulk.php')"><i class="fas fa-users"></i> Confirm Bulk requests</a></li> -->
@@ -57,7 +57,7 @@
                     <li><a href="javascript:void(0);" id="acomls" title="Add rooms to hotel" class="page_navs" data-page="accom_list" onclick="showPage('accomodations.php')"><i class="fas fa-book"></i> Accomodation list</a></li>
                 </ul>
             </li>
-            <!-- <li><a href="../controller/get_paid_members.php" id="upLoadMem" class="page_navs" data-page="connect to pharmagateway"><i class="fas fa-users"></i> get paid members</a></li> -->
+            <li style="margin:0 0 100px 0!important"><a href="javascript:void(0)" onclick="showPage('update_fellow.php')"id="upLoadMem" class="page_navs" title="upload fellow"><i class="fas fa-users"></i> update fellow</a></li>
             <?php }?>
         </ul>
     </nav>
