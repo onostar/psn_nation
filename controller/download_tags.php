@@ -40,7 +40,12 @@
                 <?php }else{ ?>
                 <p style="background:rgb(10, 63, 10); color:#fff; border-radius:5px;"><?php echo $slip->user_type?></p>
                 <?php }?>
-                <p><span>Registration ID: </span><br><?php echo $slip->reg_number?></p>
+                <?php
+                    if($user->cpc == 1){
+                        echo "<h2 style='color:rgba(241, 56, 23, 0.9)'>CPC</h2>";
+                    }else{
+                ?>
+                <p><span>Registration ID: <?php }?></span><br><?php echo $user->reg_number?></p>
                 <div class="qr_code">
                     <?php
                         echo "<img src='../controller/barcode.php?codetype=code128&size=200&text=".$slip->barcode."'/>";

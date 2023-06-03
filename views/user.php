@@ -176,7 +176,12 @@
                                 <?php }else{?>
                                 <p style="background:rgb(10, 63, 10); color:#fff;border-radius:5px;"><?php echo $user->user_type?></p>
                                 <?php }?>
-                                <p><span>Registration ID: </span><br><?php echo $user->reg_number?></p>
+                                <?php
+                                    if($user->cpc == 1){
+                                        echo "<h2>CPC</h2>";
+                                    }else{
+                                ?>
+                                <p><span>Registration ID: <?php }?></span><br><?php echo $user->reg_number?></p>
                                 <div class="qr_code">
                                 <?php
                                     

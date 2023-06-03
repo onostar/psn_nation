@@ -57,7 +57,8 @@
                     <li><a href="javascript:void(0);" id="acomls" title="Add rooms to hotel" class="page_navs" data-page="accom_list" onclick="showPage('accomodations.php')"><i class="fas fa-book"></i> Accomodation list</a></li>
                 </ul>
             </li>
-            <li style="margin:0 0 100px 0!important"><a href="javascript:void(0)" onclick="showPage('update_fellow.php')"id="upLoadMem" class="page_navs" title="upload fellow"><i class="fas fa-users"></i> update fellow</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('update_fellow.php')"id="upLoadMem" class="page_navs" title="upload fellow"><i class="fas fa-users"></i> update fellow</a></li>
+            <li style="margin:0 0 100px 0!important"><a href="../controller/get_paid_members.php" id="upLoadMem" class="page_navs" title="upload fellow"><i class="fas fa-users"></i> Check paid</a></li>
             <?php }?>
         </ul>
     </nav>
