@@ -2379,6 +2379,7 @@ main hr{
     margin:20px auto;
     display:flex;
     gap:.5rem;
+    flex-wrap:wrap;
 }
 .filter_block .blocks{
     background: #fff;

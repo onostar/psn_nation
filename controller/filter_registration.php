@@ -17,7 +17,7 @@
         }elseif($filter == "user_type"){
             echo "User type";
         }else{
-    echo $filter; }?> Attendance Statistics for Jewel City 2023 Conference</h3>
+    echo $filter; }?> Registration Statistics for Jewel City 2023 Conference</h3>
         <div class="filter_block">
             <?php
                 if($get_filter->rowCount() > 0){
