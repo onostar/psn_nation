@@ -1,10 +1,26 @@
 <div id="dashboard">
                     
     <div class="cards" id="card5">
-        <a href="javascript:void(0)" class="page_navs" onclick="showPage('guest_list.php')">
+        <a href="javascript:void(0)" class="page_navs" onclick="showPage('reg_statistics.php')">
             <div class="infos">
                 <i class="fas fa-users"></i>
-                <p> Registered Guests </p>
+                <p> Total Registered </p>
+
+                <p>
+                    <?php
+                        $show_members = $connectdb->prepare("SELECT * FROM users WHERE last_name != 'Admin' AND last_name != 'User'");
+                        $show_members->execute();
+                        echo $show_members->rowCount();
+                    ?>
+                </p>
+            </div>
+        </a>
+    </div> 
+    <div class="cards" id="card4">
+        <a href="javascript:void(0)" class="page_navs" onclick="showPage('guest_list.php')">
+            <div class="infos">
+                <i class="fas fa-user-tie"></i>
+                <p> Total Guests </p>
 
                 <p>
                     <?php
@@ -16,11 +32,11 @@
             </div>
         </a>
     </div> 
-    <div class="cards" id="card4">
+    <div class="cards" id="card3">
         <a href="javascript:void(0)" onclick="showPage('delegates.php')" data-page="addRestaurant" class="page_navs">
             <div class="infos">
                 <i class="fas fa-user-graduate"></i>
-                <p> Registered Delegates </p>
+                <p> Approved Delegates </p>
                 <p>
                     <?php
                         $approved = $connectdb->prepare("SELECT * FROM users WHERE user_type = 'delegate'");
@@ -35,7 +51,7 @@
             </div>
         </a>
     </div>
-    <div class="cards" id="card3">
+    <div class="cards" id="card0">
         <a class="page_navs" data-page="Registered exhbitors" href="javascript:void(0)" onclick="showPage('exhibitors_list.php')">
             <div class="infos">
                 <i class="fas fa-store"></i>
@@ -55,7 +71,7 @@
             </div>
         </a>
     </div>
-    <div class="cards" id="card0">
+    <!-- <div class="cards" id="card0">
         <a href="javascript:void(0)" class="page_navs" data-page="hotel_request">
             <div class="infos">
                 <i class="fas fa-hotel"></i>
@@ -74,7 +90,7 @@
                 </p>
             </div>
         </a>
-    </div>
+    </div> -->
     
     
 </div>

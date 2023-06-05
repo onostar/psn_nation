@@ -44,7 +44,7 @@
 
         // check image type and size before updating profile
         if(in_array($file_ext, $allowed_ext)){
-            if($passport_size <= 300000){
+            if($passport_size <= 500000){
                 /* update profile */
                 if(move_uploaded_file($_FILES['passport']['tmp_name'], $passport_folder)){
                     

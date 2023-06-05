@@ -126,94 +126,44 @@
                 <!-- <div class="allResults">
                     
                 </div> -->
-        <!-- all members -->
-        <?php if($last_name == "Admin"){?>
-        <div class="allResults displays" id="allMembers">
-            <!-- <hr> -->
-            <div class="options">
-                <div class="search">
-                    <input type="search" id="searchMenus" placeholder="Enter keyword" onkeyup="searchData(this.value)">
-                </div>
-                <button id="download_members" class="downloadBtn" onclick="convertToExcel('result_table', 'Registered members for Jewell 2023')">Export to Excel <i class="fas fa-file-excel"></i></button>
-            </div>
-            <h3 style="text-align:center; padding:4px;text-transform:uppercase">Registered Members for Jewel city 2023</h3>
-            <table id="result_table" class="searchTable">
-                <thead>
-                    <tr>
-                        <td>S/N</td>
-                        <td>Full Name</td>
-                        <!-- <td>PCN Number</td> -->
-                        <td>Phone Number</td>
-                        <td>type</td>
-                        <td>State</td>
-                        <td>Status</td>
-                        <td>Registration ID</td>
-                        <!-- <td>Accomodation</td> -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        $get_all = $connectdb->prepare("SELECT * FROM users WHERE last_name != 'Admin' AND last_name != 'User' ORDER BY reg_date");
-                        $get_all->execute();
-                        $n = 1;
-                        
-                        $alls = $get_all->fetchAll();
+        
 
-                        foreach($alls as $all):
-                    ?>
-                    <tr>
-                        <td><button><a href="javascript:void(0)" onclick="showPage('clearance.php?user=<?php echo $all->user_id;?>')" title="View details"><?php echo $n?></a></button></td>
-                        <td><?php echo ucwords($all->first_name . " " . $all->last_name);?></td>
-                        <!-- <td style="color:var(--otherColor)"><?php echo $all->pcn_number;?></td> -->
-                        <td style="color:var(--primaryColor)"><?php echo $all->whatsapp;?></td>
-                        <td style="color:green"><?php echo $all->user_type;?></td>
-                        <td style="color:green"><?php echo $all->res_state?></td>
-                        <td style="text-align:center">
-                            <?php 
-                                if($all->payment_status == 2){
-                                    echo "<p style='color:green'>A</p>";
-                                }else{
-                                    echo "<p style='color:red'>NA</p>";
-                                }
-                            ?>
-                        </td>
-                        <td><?php echo $all->reg_number;?></td>
-                        <!-- <td><?php
-                            $hotel_status = $connectdb->prepare("SELECT * FROM request_hotel WHERE requester = :requester");
-                        $hotel_status->bindvalue("requester", $all->user_id);
-                        $hotel_status->execute();
-                        if(!$hotel_status->rowCount() > 0){
-                            echo "No request";
-                        }else{
-                            $requests = $hotel_status->fetchAll();
-                            foreach($requests as $request){
-                                if($request->request_status == 1){
-                                    echo $request->hotel." <i class='fas fa-check' style='color:green'></i>";
-                                }else{
-                                    echo $request->hotel." <i class='fas fa-spinner' style='color:red'></i>";
-                                }
-                            }
-                        }
-                        ?>
-                        </td> -->
-                        
-                    </tr>
-                    <?php $n++; endforeach;
-                    
-                    ?>
-                </tbody>
-            </table>
-            <?php
-                if(!$get_all->rowCount() > 0){
-                    echo "<p class='no_result'>'No result found!'</p>";
-                }
-            ?>
-    </div>
-        <?php }?>
+        <div class="charts">
+            <div id="chart1" class="chart">
+                <!-- chart for user types -->
+                <?php
+                    $get_types = $connectdb->prepare("SELECT COUNT(user_type) as total, user_type FROM users WHERE user_type != '' GROUP BY user_type");
+                    $get_types->execute();
+                    $rows = $get_types->fetchAll();
+                    foreach($rows as $row){
+                        $usertype[] = $row->user_type;
+                        $totaltype[] = $row->total;
+                    }
+                ?>
+                <h3>User type statistics</h3>
+                <canvas id="chartjs_bar1"></canvas>
+            </div>
+            <div id="chart2" class="chart">
+                <!-- chart for technical group -->
+                <?php
+                    $get_types = $connectdb->prepare("SELECT COUNT(tech_group) as groups, tech_group FROM users WHERE user_type != '' GROUP BY tech_group");
+                    $get_types->execute();
+                    $rows = $get_types->fetchAll();
+                    foreach($rows as $row){
+                        $techgroup[] = $row->tech_group;
+                        $totalgroup[] = $row->groups;
+                    }
+                ?>
+                <h3 style="background:var(--moreColor)">Technical group statistics</h3>
+                <canvas id="chartjs_bar2"></canvas>
+            </div>
+            
+        </div>
             
             </section>
             </div>
         </div>
+    
     </main>
         
             
@@ -221,7 +171,70 @@
     </main>
     <script src="../jquery.js"></script>
     <script src="../jquery.table2excel.js"></script>
+    <script src="../Chart.min.js"></script>
     <script src="../script.js"></script>
+    <script type="text/javascript">
+      var ctx2 = document.getElementById("chartjs_bar1").getContext('2d');
+                var myChart = new Chart(ctx2, {
+                    type: 'pie',
+                    data: {
+                        labels:<?php echo json_encode($usertype); ?>,
+                        datasets: [{
+                            backgroundColor: [
+                               "#5969aa",
+                                "#ff407b",
+                                "#331523",
+                                "#ffc750"
+                            ],
+                            data:<?php echo json_encode($totaltype); ?>,
+                        }]
+                    },
+                    options: {
+                           legend: {
+                        display: true,
+                        position: 'bottom',
+ 
+                        labels: {
+                            fontColor: '#71748d',
+                            fontFamily: 'Circular Std Book',
+                            fontSize: 14,
+                        }
+                    },
+ 
+ 
+                }
+                });
+      var ctx = document.getElementById("chartjs_bar2").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels:<?php echo json_encode($techgroup); ?>,
+                        datasets: [{
+                            backgroundColor: [
+                               "#5969aa",
+                                "#ff407b",
+                                "#331523",
+                                "#ffc750"
+                            ],
+                            data:<?php echo json_encode($totalgroup); ?>,
+                        }]
+                    },
+                    options: {
+                           legend: {
+                        display: true,
+                        position: 'bottom',
+ 
+                        labels: {
+                            fontColor: '#71748d',
+                            fontFamily: 'Circular Std Book',
+                            fontSize: 14,
+                        }
+                    },
+ 
+ 
+                }
+                });
+    </script>
 </body>
 </html>
 

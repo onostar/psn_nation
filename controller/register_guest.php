@@ -38,7 +38,7 @@
                 header("Location: ../guests/guest_registration.php");
             }else{
                 if(in_array($file_ext, $allowed_ext)){
-                    if($passport_size <= 300000){
+                    if($passport_size <= 500000){
                         if(move_uploaded_file($_FILES['passport']['tmp_name'], $passport_folder)){
                             $insert_user = $connectdb->prepare("INSERT INTO users (guest_type, gender, last_name, first_name, user_email, whatsapp, dob, country, fee, guest_password, passport, reg_number, user_type, barcode) VALUES (:guest_type, :gender, :last_name, :first_name, :user_email, :whatsapp, :dob, :country, :fee, :guest_password, :passport, :reg_number, :user_type, :barcode)");
                             $insert_user->bindvalue("guest_type", $guest_type);

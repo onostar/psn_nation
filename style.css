@@ -1779,6 +1779,31 @@ main hr{
     background-color: rgb(128, 125, 125, .1);
     margin:0 auto!important;
 }
+.charts{
+    width:90%;
+    margin:20px auto!important;
+    gap:1rem;
+    display:flex;
+    flex-wrap:wrap;
+}
+.charts .chart{
+    width:47%;
+    /* height:400px!important; */
+    box-shadow: 2px 2px 2px #c4c4c4!important;
+    background:#fff;
+}
+.chart canvas{
+    /* height:auto; */
+    margin:10px 0;
+    width:100%;
+}
+.chart h3{
+    color:#fff;
+    background:var(--primaryColor);
+    padding:8px;
+    font-size:1rem;
+    text-transform: uppercase;
+}
 .options{
     display:flex;
     justify-content: space-between;
@@ -2585,6 +2610,34 @@ main hr{
     width:50%;
     margin:5px auto;
 }
+/* page links */
+.page_links{
+    display:flex;
+    flex-wrap:wrap;
+    gap: .4rem;
+    margin:20px 0;
+}
+.page_links .pages{
+    display:flex;
+    flex-wrap:wrap;
+    gap: .4rem;
+}
+.page_links .pages li{
+    list-style: none;
+    
+}
+.page_links .pages li a{
+    padding:4px;
+    background:#fff;
+    border-radius:5px;
+    box-shadow: 2px 2px 2px var(--primaryColor);
+    transition:.4s all ease-in-out;
+}
+.page_links .pages li a:hover, .page_links .pages li a:focus{
+    background:var(--primaryColor);
+    color:#fff;
+    
+}
 @media screen and (max-width: 800px){
     #topHeader{
         justify-content: space-between;
@@ -3227,6 +3280,12 @@ main hr{
         border-radius: 5px;
     }
     #profile .add_user_form label{
+        font-size:.9rem;
+    }
+    .charts .chart{
+        width:100%;
+    }
+    .charts .chart h3{
         font-size:.9rem;
     }
 }
