@@ -1327,8 +1327,8 @@ email: user_email,
         customer_logo:
 'https://www.vpay.africa/static/media/vpayLogo.91e11322.svg',
         customer_service_channel: '+2348030007000, support@psnconference.org',
-        txn_charge: 100,
-        txn_charge_type: 'flat',
+        txn_charge: 2.7,
+        txn_charge_type: 'percentage',
         onSuccess: function(response) { alert('Payment Successful!',
 response.message); 
         window.open("../controller/update_guest_status.php?user="+user+"&transref="+transNum, "_parent")

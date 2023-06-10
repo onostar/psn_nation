@@ -38,8 +38,38 @@
                 header("Location: ../guests/guest_registration.php");
             }else{
                 if(in_array($file_ext, $allowed_ext)){
-                    if($passport_size <= 500000){
-                        if(move_uploaded_file($_FILES['passport']['tmp_name'], $passport_folder)){
+                    // if($passport_size <= 1000000){
+                        //compress image
+                        function compressImage($source, $destination, $quality){
+                            //get image info
+                            $imgInfo = getimagesize($source);
+                            $mime = $imgInfo['mime'];
+                            //create new image from file
+                            switch($mime){
+                                case 'image/png':
+                                    $image = imagecreatefrompng($source);
+                                    imagejpeg($image, $destination, $quality);
+                                    break;
+                                case 'image/jpeg':
+                                    $image = imagecreatefromjpeg($source);
+                                    imagejpeg($image, $destination, $quality);
+                                    break;
+                                
+                                case 'image/webp':
+                                    $image = imagecreatefromwebp($source);
+                                    imagejpeg($image, $destination, $quality);
+                                    break;
+                                default:
+                                    $image = imagecreatefromjpeg($source);
+                                    imagejpeg($image, $destination, $quality);
+                            }
+                            //return compressed image
+                            return $destination;
+                        }
+                        $compress = compressImage($_FILES['passport']['tmp_name'], $passport_folder, 80);
+                        /* update profile */
+                        if($compress){
+                        // if(move_uploaded_file($_FILES['passport']['tmp_name'], $passport_folder)){
                             $insert_user = $connectdb->prepare("INSERT INTO users (guest_type, gender, last_name, first_name, user_email, whatsapp, dob, country, fee, guest_password, passport, reg_number, user_type, barcode) VALUES (:guest_type, :gender, :last_name, :first_name, :user_email, :whatsapp, :dob, :country, :fee, :guest_password, :passport, :reg_number, :user_type, :barcode)");
                             $insert_user->bindvalue("guest_type", $guest_type);
                             $insert_user->bindvalue("last_name", $last_name);
@@ -83,10 +113,10 @@
                             $_SESSION['failed'] = "logo upload failed";
                         header("Location: ../guests/guest_registration.php");
                         }
-                    }else{
+                    /* }else{
                         $_SESSION['error'] = "Error! Image size too large! Image should not be larger than 300kb";
                         header("Location: ../guests/guest_registration.php");
-                    }
+                    } */
                 }else{
                     $_SESSION['error'] = "Error! Image format not supported";
                     header("Location: ../guests/guest_registration.php");

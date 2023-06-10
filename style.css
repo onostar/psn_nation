@@ -10,7 +10,8 @@
     --secondaryColor: rgba(241, 56, 23, 0.9);
     --otherColor: rgb(15, 140, 161);
     --moreColor:rgba(11, 99, 134, 0.7);
-    --background:linear-gradient(45deg, hsla(202, 81%, 22%, .9), hsla(202, 81%, 42%, .9));
+    --background:linear-gradient(45deg, hwb(202 4% 60% / 0.9), hsla(202, 81%, 42%, .9));
+    color:#35d3be
 }
 body{
     position:relative;

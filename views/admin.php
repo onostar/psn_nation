@@ -132,15 +132,15 @@
             <div id="chart1" class="chart">
                 <!-- chart for user types -->
                 <?php
-                    $get_types = $connectdb->prepare("SELECT COUNT(user_type) as total, user_type FROM users WHERE user_type != '' GROUP BY user_type");
+                    $get_types = $connectdb->prepare("SELECT COUNT(res_state) as total, res_state FROM users WHERE user_type != '' GROUP BY res_state");
                     $get_types->execute();
                     $rows = $get_types->fetchAll();
                     foreach($rows as $row){
-                        $usertype[] = $row->user_type;
+                        $usertype[] = $row->res_state;
                         $totaltype[] = $row->total;
                     }
                 ?>
-                <h3>User type statistics</h3>
+                <h3>State Registration statistics</h3>
                 <canvas id="chartjs_bar1"></canvas>
             </div>
             <div id="chart2" class="chart">
@@ -184,7 +184,35 @@
                                "#5969aa",
                                 "#ff407b",
                                 "#331523",
-                                "#ffc750"
+                                "#ffc750",
+                                "#03454b",
+                                "#0b4466e6",
+                                "#008000",
+                                "#d2691e",
+                                "#a52a2a",
+                                "#00eeff",
+                                "#2f00ff",
+                                "#ff00aa",
+                                "#ff0000",
+                                "#1f1d1d",
+                                "#380f0f",
+                                "#e4671f",
+                                "#1fe46b",
+                                "#008000",
+                                "#d2691e",
+                                "#a52a2a",
+                                "#00eeff",
+                                "#2f00ff",
+                                "#ff00aa",
+                                "#ff0000",
+                                "#1f1d1d",
+                                "#380f0f",
+                                "#e4671f",
+                                "#1fe46b",
+                                "#c5f174",
+                                "#d874f1",
+                                "#f8fc0d",
+                                "#35d3be"
                             ],
                             data:<?php echo json_encode($totaltype); ?>,
                         }]

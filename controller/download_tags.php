@@ -45,7 +45,7 @@
                         echo "<h2 style='color:rgba(241, 56, 23, 0.9)'>CPC</h2>";
                     }else{
                 ?>
-                <p><span>Registration ID: <?php }?></span><br><?php echo $user->reg_number?></p>
+                <p><span>Registration ID: <?php }?></span><br><?php echo $slip->reg_number?></p>
                 <div class="qr_code">
                     <?php
                         echo "<img src='../controller/barcode.php?codetype=code128&size=200&text=".$slip->barcode."'/>";

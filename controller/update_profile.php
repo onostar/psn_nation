@@ -44,10 +44,38 @@
 
         // check image type and size before updating profile
         if(in_array($file_ext, $allowed_ext)){
-            if($passport_size <= 500000){
+            // if($passport_size > 100){
+                //compress image
+                function compressImage($source, $destination, $quality){
+                    //get image info
+                    $imgInfo = getimagesize($source);
+                    $mime = $imgInfo['mime'];
+                    //create new image from file
+                    switch($mime){
+                        case 'image/png':
+                            $image = imagecreatefrompng($source);
+                            imagejpeg($image, $destination, $quality);
+                            break;
+                        case 'image/jpeg':
+                            $image = imagecreatefromjpeg($source);
+                            imagejpeg($image, $destination, $quality);
+                            break;
+                        
+                        case 'image/webp':
+                            $image = imagecreatefromwebp($source);
+                            imagejpeg($image, $destination, $quality);
+                            break;
+                        default:
+                            $image = imagecreatefromjpeg($source);
+                            imagejpeg($image, $destination, $quality);
+                    }
+                    //return compressed image
+                    return $destination;
+                }
+                $compress = compressImage($_FILES['passport']['tmp_name'], $passport_folder, 80);
                 /* update profile */
-                if(move_uploaded_file($_FILES['passport']['tmp_name'], $passport_folder)){
-                    
+                // if(move_uploaded_file($_FILES['passport']['tmp_name'], $passport_folder)){
+                if($compress){
                     // update values
                     $update_profile = $connectdb->prepare("UPDATE users SET first_name = :first_name, last_name = :last_name, whatsapp = :whatsapp, other_number = :other_number, res_state = :res_state, user_email = :user_email, passport = :passport, gender = :gender, tech_group = :tech_group, user_type = :user_type, country = :country, barcode = :barcode WHERE user_id = :user_id");
                     $update_profile->bindvalue("first_name", $first_name);
@@ -102,10 +130,10 @@
                     $_SESSION['error'] = "image upload failed";
                     header("Location: ../views/welcome_page.php");
                 }
-            }else{
+            /* }else{
                 $_SESSION['error'] = "Error! Image size too large! Image should not be larger than 300kb";
                 header("Location: ../views/welcome_page.php");
-            }
+            } */
         }else{
             $_SESSION['error'] = "Error! Image format not supported";
             header("Location: ../views/welcome_page.php");
