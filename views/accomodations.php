@@ -14,7 +14,7 @@
                 <td>Address</td>
                 <td>website</td>
                 <td>Contact</td>
-                
+                <td></td>
             </tr>
         </thead>
         <tbody>
@@ -60,6 +60,7 @@
                     ?>
                 </td> -->
                 <td><?php echo $row->contact_phone?></td>
+                <td><button style="background:var(--otherColor); color:#fff;padding:5px;border-radius:5px"onclick="showPage('rooms.php?hotel=<?php echo $row->hotel_id?>')">View rooms <i class="fas fa-eye"></i></button></td>
                 
             </tr>
             <?php $n++; };?>

@@ -53,7 +53,7 @@
                     <!-- <li><a href="javascript:void(0);" id="addMenu" title="View accomodation requests" class="page_navs" data-page="hotel_request" onclick="showPage('confirm_accomod.php')"><i class="fas fa-paper-plane"></i> Accomodation requests</a></li>
                     <li><a href="javascript:void(0);" id="addMenu" title="Approve bulk requests" class="page_navs" data-page="bulk_request" onclick="showPage('confirm_bulk.php')"><i class="fas fa-users"></i> Confirm Bulk requests</a></li> -->
                     <li><a href="javascript:void(0);" id="addHot" title="Add hotels" class="page_navs" data-page="add_hotel" onclick="showPage('add_hotels.php')"><i class="fas fa-hotel"></i> Add Hotels</a></li>
-                    <!-- <li><a href="javascript:void(0);" id="addrm" title="Add rooms to hotel" class="page_navs" data-page="add_rooms" onclick="showPage('add_rooms.php')"><i class="fas fa-hotel"></i> Add Rooms & prices</a></li> -->
+                    <li><a href="javascript:void(0);" id="addrm" title="Add rooms to hotel" class="page_navs" data-page="add_rooms" onclick="showPage('add_rooms.php')"><i class="fas fa-hotel"></i> Add Rooms & prices</a></li>
                     <li><a href="javascript:void(0);" id="acomls" title="Add rooms to hotel" class="page_navs" data-page="accom_list" onclick="showPage('accomodations.php')"><i class="fas fa-book"></i> Accomodation list</a></li>
                 </ul>
             </li>

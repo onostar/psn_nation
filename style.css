@@ -2639,6 +2639,71 @@ main hr{
     color:#fff;
     
 }
+#payment_summary{
+    position:fixed;
+    background:rgba(0, 0, 0, .4);
+    left:0;
+    top:0;
+    z-index: 2;
+    width:100vw;
+    height:100vh;
+}
+.payment_summary{
+    width:50%;
+    min-height:300px;
+    margin:20vh auto;
+    border-radius: 2px 2px 2px var(--primaryColor);
+    background:#fff;
+
+}
+.payment_summary .sum_title{
+    width:100%;
+    background:var(--primaryColor);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.payment_summary .sum_title img{
+    width:70px;
+    height:50px;
+}
+.payment_summary .sum_title h3{
+    color:#fff;
+    font-weight: 1rem;
+}
+.payment_summary h2{
+    color:var(--secondaryColor);
+    font-weight: 1rem;
+    text-align: center;
+    margin:10px 0 0;
+}
+.payment_summary table{
+    border:1px solid #222;
+    border-collapse: collapse;
+    width:80%;
+    margin:10px auto;
+}
+.payment_summary table td{
+    border:1px solid #222;
+    padding:4px;
+}
+.payment_summary table thead td{
+    color:var(--primaryColor);
+    font-weight: bold;
+    border-width: 2px;
+}
+.payment_summary .proceed_btn{
+    width:50%;
+    margin:20px auto;
+}
+.payment_summary button{
+    color:#fff;
+    background:green;
+    padding:5px;
+    border-radius:5px;
+    text-align:center;
+}
 @media screen and (max-width: 800px){
     #topHeader{
         justify-content: space-between;
@@ -3288,6 +3353,24 @@ main hr{
     }
     .charts .chart h3{
         font-size:.9rem;
+    }
+    .payment_summary{
+        width:90%;
+        margin:10vh auto;
+    
+    }
+    .payment_summary .sum_title img{
+        width:50px;
+        height:40px;
+    }
+    .payment_summary .sum_title h3{
+        font-weight: .9rem;
+    }
+    .payment_summary h2{
+        font-weight: .9rem;
+    }
+    .payment_summary table{
+        width:95%;
     }
 }
 @media screen and (max-width:650px){

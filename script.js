@@ -787,7 +787,7 @@ function addRoom(){
     let roomHotel = document.getElementById("roomHotel").value;
     let room = document.getElementById("room").value;
     let price = document.getElementById("price").value;
-    let quantity = document.getElementById("quantity").value;
+    // let quantity = document.getElementById("quantity").value;
     // alert(roomHotel);
     if(roomHotel.length == 0 || roomHotel.replace(/^\s+|\s+$/g, "").length == 0){
         alert("Please select a hotel!");
@@ -801,15 +801,15 @@ function addRoom(){
         alert("Please enter room price!");
         $("#price").focus();
         return;
-    }else if(quantity.length == 0 || quantity.replace(/^\s+|\s+$/g, "").length == 0){
-        alert("Please enter room quantity!");
-        $("#quantity").focus();
-        return;
+    // }else if(quantity.length == 0 || quantity.replace(/^\s+|\s+$/g, "").length == 0){
+    //     alert("Please enter room quantity!");
+    //     $("#quantity").focus();
+    //     return;
     }else{
         $.ajax({
             type : "POST",
             url : "../controller/add_room.php",
-            data : {roomHotel:roomHotel, room:room, price:price, quantity:quantity},
+            data : {roomHotel:roomHotel, room:room, price:price},
             success : function(response){
                 $(".info").html(response);
             }
@@ -818,7 +818,7 @@ function addRoom(){
         $("#roomhotel").focus();
         $("#room").val('');
         $("#price").val('');
-        $("#quantity").val('');
+        // $("#quantity").val('');
         return false;
     }
 }
@@ -1320,14 +1320,14 @@ function vpay(fee, user, user_email){
         amount: fee,
         currency: 'NGN',
         domain: 'live',
-        key: 'a4b5da23-8398-4a4f-9b5b-19835e058986',
+        key: '28e4f709-f24a-4903-b7a2-2f0434aee8ea',
         
 email: user_email,
         transactionref: transNum,
         customer_logo:
 'https://www.vpay.africa/static/media/vpayLogo.91e11322.svg',
         customer_service_channel: '+2348030007000, support@psnconference.org',
-        txn_charge: 2.7,
+        txn_charge: 3,
         txn_charge_type: 'percentage',
         onSuccess: function(response) { alert('Payment Successful!',
 response.message); 

@@ -17,7 +17,7 @@
                             $hotels = $get_hotel->fetchAll();
                             foreach($hotels as $hotel):
                         ?>
-                        <option value="<?php echo $hotel->hotel;?>"><?php echo $hotel->hotel;?></option>
+                        <option value="<?php echo $hotel->hotel_id;?>"><?php echo $hotel->hotel;?></option>
                         <?php endforeach;?>
                     </select>
                 </div>
@@ -28,17 +28,19 @@
                 
             </div>
             <div class="inputs">
-                <div class="data">
+                <!-- <div class="data">
                     <label for="quantity">Enter room quantity</label>
                     <input type="number" name="quantity" id="quantity" placeholder="Number of available rooms" required>
-                </div>
+                </div> -->
                 <div class="data">
                     <label for="prices">Enter room tariff (NGN)</label>
                     <input type="number" name="price" id="price" required placeholder="price per night">
                 </div>
-                
+                <div class="data">
+                    <button type="submit" id="addRoom" name="addRoom" onclick="addRoom()">Add room <i class="fas fa-hotel"></i></button>
+
+                </div>
             </div>
-            <button type="submit" id="addRoom" name="addRoom" onclick="addRoom()">Add room <i class="fas fa-hotel"></i></button>
         </section>
     </div>
 </div>
