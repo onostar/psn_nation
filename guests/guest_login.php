@@ -67,6 +67,7 @@
                         <p >&copy;<?php echo Date("Y");?> PSN. All Rights Reserved.</p>
 
                     </div>
+                    <?php include "../views/sponsors_display.php"?>
 
                 </div>
                 <div class="adds">

@@ -32,11 +32,12 @@ session_start();
                     
                     if($prevResult->rowCount() > 0){
                         // Update member data in the database
-                        $connectdb->query("UPDATE paid_members SET fellow = '".$fellow."' WHERE pcn_number = '".$pcn."'");
-                    }else{
+                        $connectdb->query("UPDATE users SET fellow = '".$fellow."' WHERE pcn_number = '".$pcn."'");
+                    }
+                    /* }else{
                         // Insert member data in the database
                         $connectdb->query("INSERT INTO paid_members (pcn_number, fellow, last_name) VALUES ('".$pcn."', '".$fellow."', '".$last_name."')");
-                    }
+                    } */
                 }
                 
                 // Close opened CSV file

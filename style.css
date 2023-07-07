@@ -473,13 +473,20 @@ nav i{
     color:var(--primaryColor);
     box-shadow: 3px 3px 3px var(--primaryColor);
 }
+.taglines_mission h3{
+    background:var(--secondaryColor);
+    color:#fff;
+    text-align: center;
+    font-size: 1rem;
+    padding:5px;
+}
 .vismis_slide{
     position:relative;
-    width:300%;
+    width:100%;
     height:100%;
     left:0;
-    animation:15s slideMission infinite;
-    animation-timing-function: linear;
+    /* animation:15s slideMission infinite; */
+    /* animation-timing-function: linear; */
 
 }
 @keyframes slideMission{
@@ -505,12 +512,12 @@ nav i{
 .vismis_slide .datas{
     position:relative;
     /* border-top:2px solid var(--primaryColor); */
-    display:flex;
+    /* display:flex;
     flex-direction:column;
     justify-content: space-around;
-    align-items: center;
+    align-items: center; */
     float:left;
-    width:33.33%;
+    width:100%;
     height:100%;
     text-align:center;
     color:var(--primaryColor)!important;
@@ -520,19 +527,24 @@ nav i{
     font-weight: bold;
     text-transform: capitalize!important;
 }
-.vismis_slide .datas div p{
-    width:90%;
-    margin:0 auto;
+.vismis_slide figcaption{
     text-align: center!important;
+    color:var(--primaryColor);
+
 }
+/*
 .vismis_slide p{
     color:var(--primaryColor)!important;
     font-size:1rem;
+} */
+.vismis_slide .icon{
+    width:80%;
+    height:70%;
+    margin:20px auto 0;
 }
 .vismis_slide .icon img{
-    width:150px;
+    width:100%;
     height:100px;
-    color:var(--secondaryColor);
     
 }
 #banner .client_assess{
@@ -580,11 +592,18 @@ button:hover{
     background: var(--secondaryColor);
 }
 .top_head{
+    position:sticky;
+    top:0;
+    left:0;
     width:100%;
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
     padding:1px 10px;
+    background:var(--primaryColor);
+    color:#fff;
+    z-index:4;
+}
+.top_head marquee p{
+    display:inline-block;
+    margin:0 20px;
 }
 .social_media a{
     font-size:1.2rem;
@@ -2704,6 +2723,18 @@ main hr{
     border-radius:5px;
     text-align:center;
 }
+.all_sponsors{
+    width:100%;
+    padding:5px;
+}
+/* .all_sponsors marquee{
+    display:flex;
+    align-items:center;
+} */
+.all_sponsors img{
+    width:auto;
+    height:50px;
+}
 @media screen and (max-width: 800px){
     #topHeader{
         justify-content: space-between;
@@ -2901,28 +2932,13 @@ main hr{
         width:70%;
         margin:0 auto 10px;
     }
-    .vismis_slide{
-        padding:10px;
-    }
-    .vismis_slide div{
-        border:none;
-        justify-content: center;
-        align-items: center;
-        gap:0;
-        height:70%;
-    }
-    .vismis_slide .icon{
-        display:block;
-        border:none;
-    }
+    /*
     .vismis_slide p{
-        font-size:.9rem;
-        width:80%;
-    }
-    .vismis_slide .icon img{
-        width:100px;
-        height:70px;
-        
+        color:var(--primaryColor)!important;
+        font-size:1rem;
+    } */
+    .vismis_slide .icon{
+        margin:10px auto 0;
     }
     #request_form{
         width:100%;
@@ -3371,6 +3387,12 @@ main hr{
     }
     .payment_summary table{
         width:95%;
+    }
+    .all_sponsors{
+        background:#fff;
+        
+        width:100%;
+        padding:5px;
     }
 }
 @media screen and (max-width:650px){

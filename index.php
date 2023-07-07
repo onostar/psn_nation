@@ -24,24 +24,13 @@
 
     </div> -->
     <div class="main">
-    <!-- <section class="top_head" id="topHeader">
-        <div class="social_media">
-            <p>
-                <span>Call us </span>(+234) 123 456 78
-            </p>
-            <p>
-                info@acpn.com
-            </p>
-        </div>
-        <div class="contact_phone">
-            <ul>
-                <li><a href="javascript:void(0);" class="showRequest">Schedule Appointment</a></li>
-                <li><a href="plans.html">Find plans</a></li>
-                <li><a href="javascript:void(0);">Pay Bills</a></li>
-                <li><a href="javascript:void(0);">Covid-19 Updates</a></li>
-            </ul>
-        </div>
-    </section> -->
+    <section class="top_head" id="topHeader">
+        <marquee behavior="" direction="left">
+            <p><strong>Arrivals:</strong> 30th Ocotober, 2023 <strong>Departures:</strong> 4th November, 2023</p>
+            <p><strong>Venue:</strong> International Conference Centre, Gombe</p>
+            <p><strong>Theme:</strong> Pharmacy Practice: A pivot to Universal Health Coverage in Nigeria</p>
+        </marquee>
+    </section>
     <section id="banner">
         <header id="mainHeader" class="main_header">
             <h1>
@@ -74,7 +63,7 @@
                     <div class="taglines">
                         <div class="taglines_note">
                             <h2>PSN Jewel city 2023 Conference</h2>
-                            <p>Welcome to the registration portal for the Annual National Conference "Jewel City 2023"</p>
+                            <p>Kicking off 30th October to November 4th 2023, at the Gombe International Conference Centre, Gombe</p>
                             <div class="btns">
                                 <!-- <a href="javascript:void(0)" class="showRequest">Schedule an Appointment Now</a> -->
                                 <a href="guests/guest_login.php" title="Guests portal" style="background:var(--primaryColor)">Guests Login <i class="fas fa-sign-in-alt"></i></a>
@@ -82,36 +71,24 @@
                             </div>
                         </div>
                         <div class="taglines_mission">
+                            <h3>This event is sponsored by</h3>
                             <div class="vismis_slide">
-                                <div class="datas missions">
-                                    <div class="icon">
-                                        <img src="images/conference_logo.png" alt="Conference">
-                                    </div>
-                                    <div>
-                                        <h3>Theme</h3>
-                                        <p>Pharmacy Practice: A pivot to Universal Health Coverage in Nigeria</p>
-                                    </div>
-                                </div>
-                                <div class="datas missions">
-                                    <div class="icon">
-                                        <img src="images/conference_logo.png" alt="Conference">
-                                    </div>
-                                    <div>
-                                        <h3>Date</h3>
-                                        <p>Arrivals: 30th Ocotober, 2023<br>
-                                        Departures: 4th November, 2023</p>
-                                    </div>
-                                </div>
+                                <?php
+                                    $get_sponsors = $connectdb->prepare("SELECT * FROM sponsors ORDER BY category LIMIT 5");
+                                    $get_sponsors->execute();
+                                    $rows = $get_sponsors->fetchAll();
+                                    foreach($rows as $row){
+                                ?>
                                 <div class="datas vissions">
-                                    <div class="icon">
-                                        <img src="images/conference_logo.png" alt="Conference">
-                                    </div>
-                                    <div>
-                                        <h3>Venue</h3>
-                                        <p>Gombe International Conference Centre, Gombe</p>
-                                    </div>
+                                    <figure class="icon">
+                                        <img src="<?php echo 'sponsors/'.$row->logo?>" alt="<?php echo $row->sponsor_name?>" title="<?php echo $row->sponsor_name?>">
+                                        <figcaption>
+                                            <?php echo $row->sponsor_name?>
+                                        </figcaption>
+                                    </figure>
                                     
                                 </div>
+                                <?php }?>
                             </div>
                             
                         </div>

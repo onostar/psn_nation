@@ -47,7 +47,8 @@
                     <!-- <li><a href="javascript:void(0)" onclick="showPage('confirm_guest.php')" title="Confirm guests payment"><i class="fas fa-users"></i> Confirm Guest payment</a></li> -->
                 </ul>
             </li>
-            <li><a href="javascript:void(0);" id="surv" title="View surveys" class="page_navs" data-page="survey_list" onclick="showPage('surveys.php')"><i class="fas fa-book"></i> Surveys</a></li>
+            <!-- <li><a href="javascript:void(0);" id="surv" title="View surveys" class="page_navs" data-page="survey_list" onclick="showPage('surveys.php')"><i class="fas fa-book"></i> Surveys</a></li> -->
+            <li><a href="javascript:void(0);" id="spons" title="Manage sponsors" class="page_navs" onclick="showPage('sponsors.php')"><i class="fas fa-user-graduate"></i> Sponsors</a></li>
             <li><a href="javascript:void(0);" class="addMenu allMenus" title="manage accomodations"><span><i class="fas fa-hotel"></i> Accomodation </span><span><i class="fas fa-chevron-down"></i></span></a>
                 <ul class="nav1Menu">
                     <!-- <li><a href="javascript:void(0);" id="addMenu" title="View accomodation requests" class="page_navs" data-page="hotel_request" onclick="showPage('confirm_accomod.php')"><i class="fas fa-paper-plane"></i> Accomodation requests</a></li>

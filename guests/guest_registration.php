@@ -24,6 +24,7 @@
             <section class="reg_log">
                 
                 <div class="login_page" id="reg_form">
+                <?php include "../views/sponsors_display.php"?>
                     <h1>
                         <a href="../index.php">
                             <img src="../images/conference_logo.png" alt="logo">
