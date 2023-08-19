@@ -59,6 +59,7 @@
                 </ul>
             </li>
             <li><a href="javascript:void(0)" onclick="showPage('update_fellow.php')"id="upLoadMem" class="page_navs" title="upload fellow"><i class="fas fa-users"></i> update fellow</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('upload_members.php')"id="upLoadMem" class="page_navs" title="upload paid members"><i class="fas fa-users"></i> upload paid members</a></li>
             <li style="margin:0 0 100px 0!important"><a href="../controller/get_paid_members.php" id="upLoadMem" class="page_navs" title="upload fellow"><i class="fas fa-users"></i> Check paid</a></li>
             <?php }?>
         </ul>
