@@ -22,6 +22,7 @@
             <section class="reg_log">
                 
                 <div class="login_page">
+                <?php include "../views/sponsors_display.php"?>
                     <h1>
                         <a href="../index.php">
                             <img src="../images/conference_logo.png" alt="logo">
@@ -67,13 +68,15 @@
                         <p >&copy;<?php echo Date("Y");?> PSN. All Rights Reserved.</p>
 
                     </div>
-                    <?php include "../views/sponsors_display.php"?>
 
                 </div>
                 <div class="adds">
-                    <h2>PSN</h2>
+                    <!-- <h2>PSN</h2>
                     <h2>jEWEL CITY <?php echo Date("Y");?></h2>
-                    <h2>National Conference</h2>
+                    <h2>National Conference</h2> -->
+                    <div class="adds_img">
+                        <img src="../images/psn_poster.jpg" alt="poster">
+                    </div>
                 </div>
             </section>
     </main>

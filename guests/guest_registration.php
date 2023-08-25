@@ -304,9 +304,11 @@
 
                 </div>
                 <div class="adds" id="reg_adds">
-                    <h2>PSN</h2>
+                    <!-- <h2>PSN</h2>
                     <h2>Jewel City <?php echo date ("Y");?></h2>
-                    <h2>National Conference</h2>
+                    <h2>National Conference</h2> -->
+                    <img src="../images/psn_poster.jpg" alt="poster">
+                    
                 </div>
             </section>
     </main>

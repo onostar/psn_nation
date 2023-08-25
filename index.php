@@ -58,7 +58,7 @@
             <div class="slides">
                 <div class="slide">
                     <div class="banner_img">
-                        <img src="images/conference_logo.jpg" alt="banner">
+                        <img src="images/psn_poster.jpg" alt="banner">
                     </div>
                     <div class="taglines">
                         <div class="taglines_note">
