@@ -37,6 +37,9 @@
                 <!-- <div class="qr_code">
                 <img src="../images/qr_code.png" alt="qr_code">
                 </div> -->
+                <div class="tag_sponsor">
+                    <img src="../images/mega_logo.jpg" alt="mega" class="mega">
+                </div>
             </div>
         </div>
 

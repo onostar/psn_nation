@@ -187,9 +187,13 @@
                                 <?php
                                     echo "<img src='../controller/barcode.php?codetype=code128&size=200&text=".$user->barcode."'/>";
                                 ?>
-                                <h4 class="barcode"><?php echo $user->barcode?></h4>
+                                <!-- <h4 class="barcode"><?php echo $user->barcode?></h4> -->
                                 </div>
                                 <!-- guest type -->
+                                <div class="tag_sponsor">
+                                    <img src="../images/mega_logo.jpg" alt="mega" class="mega">
+
+                                </div>
                                 
                                 
                             </div>

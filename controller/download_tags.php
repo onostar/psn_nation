@@ -41,7 +41,7 @@
                 <p style="background:rgb(10, 63, 10); color:#fff; border-radius:5px;"><?php echo $slip->user_type?></p>
                 <?php }?>
                 <?php
-                    if($user->cpc == 1){
+                    if($slip->cpc == 1){
                         echo "<h2 style='color:rgba(241, 56, 23, 0.9)'>CPC</h2>";
                     }else{
                 ?>
@@ -50,8 +50,12 @@
                     <?php
                         echo "<img src='../controller/barcode.php?codetype=code128&size=200&text=".$slip->barcode."'/>";
                     ?>
-                <h4 class="barcode"><?php echo $slip->barcode?></h4>
+                <!-- <h4 class="barcode"><?php echo $slip->barcode?></h4> -->
                 </div>
+                <div class="tag_sponsor">
+                <img src="../images/mega_logo.jpg" alt="mega" class="mega">
+
+            </div>
                 
             </div>
         </div>

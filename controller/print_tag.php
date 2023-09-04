@@ -51,7 +51,11 @@
                 <?php
                     echo "<img src='barcode.php?codetype=code128&size=200&text=".$user->barcode."&print=true'/>";
                 ?>
-                <h4 class="barcode"><?php echo $user->barcode?></h4>
+                <!-- <h4 class="barcode"><?php echo $user->barcode?></h4> -->
+            </div>
+            <div class="tag_sponsor">
+                <img src="../images/mega_logo.jpg" alt="mega" class="mega">
+
             </div>
         </div>
     </div>

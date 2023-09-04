@@ -156,11 +156,13 @@
                         <?php }?>
                             <img src="../images/conference_logo.png" alt="PSN logo">
                             <P>Jewel city 2023</P>
+                            <!-- <img src="../images/mega_logo.jpg" alt="mega" id="mega"> -->
                         </div>
                         <div class="slip">
                             <div class="slip_back">
                                 <img src="../images/psn_logo2.png" alt="psn">
                             </div>
+                            
                             <div class="details">
                                 <div class="logos_passport">
                                     <div class="passports">
@@ -188,8 +190,12 @@
                                     echo "<img src='../controller/barcode.php?codetype=code128&size=200&text=".$user->barcode."'/>";
                                     
                                 ?>
-                                <h4 class="barcode"><?php echo $user->barcode?></h4>
+                                <!-- <h4 class="barcode"><?php echo $user->barcode?></h4> -->
                                 </div>
+                            </div>
+                           <div class="tag_sponsor">
+                                <img src="../images/mega_logo.jpg" alt="mega" class="mega">
+
                             </div>
                         </div>
                         

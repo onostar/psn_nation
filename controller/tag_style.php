@@ -57,8 +57,8 @@
 }
 .passports{
     margin:5px;
-    height:200px;
-    width:200px;
+    height:180px;
+    width:180px;
     overflow: hidden;
     border-radius:50%;
     box-shadow: 2px 2px 2px 2px #c4c4c4;
@@ -87,7 +87,7 @@
     padding:10px;
     color:rgba(66, 65, 65, .9);
     text-transform: uppercase;
-    margin:5px 0;
+    margin:0;
     font-size:1.1rem;
 }
 .details p span{
@@ -103,13 +103,28 @@
     border:2px solid #222;
 } */
 .qr_code img{
-    height:50px;
+    height:40px;
     width: 100px;
-    margin:1px auto;
+    margin:0px auto;
 }
 .barcode{
     margin:1px;
     padding:0;
     font-size:.9rem;
+
+}
+.tag_sponsor{
+    position:absolute;
+    bottom:0;
+    left:25%;
+    width:50%;
+    opacity:.7;
+    height:25px;
+    margin:0 auto;
+}
+.tag_sponsor img{
+    width:100%;
+    height:100%;
+    /* object-fit: cover; */
 }
 </style>

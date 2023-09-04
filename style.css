@@ -1315,6 +1315,9 @@ main hr{
     height:100%;
     border-radius: 50%;
 }
+.logos #mega{
+    height:70%;
+}
 .slip{
     position:relative;
     width:100%;
@@ -1335,7 +1338,7 @@ main hr{
     object-fit: cover;
 }
 .passports{
-    margin:10px;
+    margin:5px;
     height:200px;
     width:200px;
     overflow: hidden;
@@ -1357,6 +1360,7 @@ main hr{
     align-items: center;
     justify-content: center;
     text-align:Center;
+    z-index: 3;
 }
 .details p{
     border:1px solid rgba(167, 164, 164, .5);
@@ -1376,7 +1380,7 @@ main hr{
 .qr_code{
     height:50px;
     width: 150px;
-    margin:15px auto;
+    margin:0px auto 10px;
     border-radius:5px;
     padding: 0;
     /* border:2px solid #222; */
@@ -1385,6 +1389,20 @@ main hr{
     width:100%;
     height:80%;
     margin:0;
+}
+.tag_sponsor{
+    position:absolute;
+    bottom:0;
+    left:25%;
+    width:50%;
+    opacity:.7;
+    height:25px;
+    margin:0 auto;
+}
+.tag_sponsor img{
+    width:100%;
+    height:100%;
+    /* object-fit: cover; */
 }
 .barcode{
     margin:0 0 10px 0;
