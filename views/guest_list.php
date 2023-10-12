@@ -23,6 +23,7 @@
                     <td>Country</td>
                     <td>Phone Numbers</td>
                     <td>Status</td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
@@ -81,7 +82,15 @@
                                 }
                             ?>
                         </td>
-                    
+                        <td>
+                            <?php
+                                if($all->payment_status == 0){
+                                    echo "";
+                                }else{
+                            ?>
+                            <button style="background:var(--primaryColor);color:#fff; border-radius:5px;" onclick="printGuestTag('<?php echo $all->user_id?>')"><i class="fas fa-print"></i> Print tag</button>
+                            <?php }?>
+                        </td>
                 </tr>
                 <?php $n++; endforeach;?>
             </tbody>

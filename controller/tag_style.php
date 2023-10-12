@@ -1,12 +1,20 @@
 <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+.download_slip{
+    width:100vw;
+    height:100vh;
+}
 .clearanceSlip{
     /* position:relative; */
-    width:45vw;
-    margin:0;
-    height:45vh!important;
-    padding:10px;
+    width:45%;
+    margin:0.5% 10px;
+    height:49%!important;
+    padding:0;
     background:#fff;
-    margin-bottom:20px;
+    /* margin-bottom:20px; */
     /* border:2px solid green!important; */
     /* box-shadow: 2px 2px 2px 2px #c4c4c4; */
 }
@@ -34,7 +42,7 @@
 .slip{
     position:relative;
     width:100%;
-    height:94%;
+    height:90%;
     overflow:hidden;
 }
 .slip_back{
@@ -76,7 +84,7 @@
     display:flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content:flex-start;
     text-align:Center;
     gap:0;
     height:100%;

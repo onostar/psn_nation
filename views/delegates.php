@@ -9,6 +9,7 @@
             <div class="search">
                 <input type="search" id="searchApproved" placeholder="Enter keyword" onkeyup="searchData(this.value)">
             </div>
+            <button id="reg_fellows" style="background:var(--otherColor)" onclick="showPage('fellow.php')">View Fellows <i class="fas fa-user-tie"></i></button>
             <button class="downloadTags" onclick="printAllTags()">Download tags <i class="fas fa-download"></i></button>
             <button id="download_approved" class="downloadBtn" onclick="convertToExcel('approved_table', 'Registered Delegates')">Export to Excel <i class="fas fa-file-excel"></i></button>
         </div>
@@ -21,6 +22,7 @@
                     <td>PCN Number</td>
                     <td>Phone Numbers</td>
                     <td>Registration Id</td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
@@ -59,7 +61,9 @@
                         <td><?php echo $all->pcn_number;?></td>
                         <td><?php echo $all->whatsapp.", ". $all->other_number;?></td>
                         <td><?php echo $all->reg_number;?></td>
-                        
+                        <td>
+                            <button style="background:var(--primaryColor);color:#fff; border-radius:5px;" onclick="printTag('<?php echo $all->pcn_number?>')"><i class="fas fa-print"></i> Print tag</button>
+                        </td>
                     
                 </tr>
                 <?php $n++; endforeach;?>

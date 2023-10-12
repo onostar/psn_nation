@@ -48,7 +48,7 @@
             <?php
                 
                 if($type->guest_type != "Diaspora"){
-                    if($type->guest_type == "student" || $type->guest_type == "intern" || $type->guest_type == "NYSC"){
+                    if($type->guest_type == "Student" || $type->guest_type == "Intern" || $type->guest_type == "NYSC"){
                 
             ?>
             <p id="fellow" style="background:yellow;color:#000"><?php echo $type->guest_type?></p>
@@ -58,9 +58,13 @@
             <p><span>Registration ID:</span><br><?php echo $user->reg_number?></p>
             <div class="qr_code">
             <?php
-                echo "<img src='../controller/barcode.php?codetype=code128&size=200&text=".$user->barcode."'/>";
+                require '../vendor/autoload.php';
+
+                // This will output the barcode as HTML output to display in the browser
+                $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+                echo $generator->getBarcode($user->barcode, $generator::TYPE_CODE_128)
             ?>
-            <!-- <h4 class="barcode"><?php echo $user->barcode?></h4> -->
+            <h4 class="barcode"><?php echo $user->barcode?></h4>
             </div>
             <!-- guest type -->
             <div class="tag_sponsor">
@@ -70,7 +74,7 @@
             
         </div>
     </div>
-    
+
     
 </section>
 <?php endforeach; }?>

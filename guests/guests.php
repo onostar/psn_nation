@@ -185,7 +185,12 @@
                                 <p><span>Registration ID:</span><br><?php echo $user->reg_number?></p>
                                 <div class="qr_code">
                                 <?php
-                                    echo "<img src='../controller/barcode.php?codetype=code128&size=200&text=".$user->barcode."'/>";
+                                    /* echo "<img src='../controller/barcode.php?codetype=code128&size=200&text=".$user->barcode."'/>"; */
+                                    require '../vendor/autoload.php';
+
+                    // This will output the barcode as HTML output to display in the browser
+                    $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+                    echo $generator->getBarcode($user->barcode, $generator::TYPE_CODE_128);
                                 ?>
                                 <!-- <h4 class="barcode"><?php echo $user->barcode?></h4> -->
                                 </div>

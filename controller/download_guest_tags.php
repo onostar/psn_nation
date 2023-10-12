@@ -71,5 +71,5 @@
 </div>
 <script>
     window.print();
-    window.close();
+    // window.close();
 </script>

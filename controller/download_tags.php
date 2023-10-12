@@ -3,7 +3,7 @@
 
 
 <!-- all approved slip -->
-<div class="download_slip" style="display:flex;flex-wrap:wrap;margin:0;padding:0;">
+<div class="download_slip" style="display:flex;flex-wrap:wrap;margin:0;padding:0;gap:0; width:100vw; height:100vh">
             
     <?php
         $get_slips = $connectdb->prepare("SELECT * FROM users WHERE payment_status = 2 AND user_type = 'Delegate' ORDER BY reg_date");
@@ -48,7 +48,12 @@
                 <p><span>Registration ID: <?php }?></span><br><?php echo $slip->reg_number?></p>
                 <div class="qr_code">
                     <?php
-                        echo "<img src='../controller/barcode.php?codetype=code128&size=200&text=".$slip->barcode."'/>";
+                        // echo "<img src='../controller/barcode.php?codetype=code128&size=200&text=".$slip->barcode."'/>";
+                        require '../vendor/autoload.php';
+
+// This will output the barcode as HTML output to display in the browser
+$generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+echo $generator->getBarcode($slip->barcode, $generator::TYPE_CODE_128);
                     ?>
                 <!-- <h4 class="barcode"><?php echo $slip->barcode?></h4> -->
                 </div>
@@ -66,5 +71,5 @@
 </div>
 <script>
     window.print();
-    window.close();
+    // window.close();
 </script>
