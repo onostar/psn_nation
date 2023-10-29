@@ -9,11 +9,12 @@
 }
 .clearanceSlip{
     /* position:relative; */
-    width:45%;
-    margin:0.5% 10px;
-    height:49%!important;
+    width:48%;
+    margin:0 1%;
+    height:50%!important;
     padding:0;
     background:#fff;
+    overflow:hidden;
     /* margin-bottom:20px; */
     /* border:2px solid green!important; */
     /* box-shadow: 2px 2px 2px 2px #c4c4c4; */
@@ -80,7 +81,7 @@
     text-align:center;
 }
 .details{
-    padding:5px;
+    padding:0;
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -88,7 +89,7 @@
     text-align:Center;
     gap:0;
     height:100%;
-    /* overflow: hidden; */
+     overflow: hidden; 
 }
 .details p{
     border:1px solid rgba(167, 164, 164, .5);
@@ -96,7 +97,7 @@
     color:rgba(66, 65, 65, .9);
     text-transform: uppercase;
     margin:0;
-    font-size:1.1rem;
+    font-size:1rem;
 }
 .details p span{
     font-weight: bolder;
@@ -122,12 +123,8 @@
 
 }
 .tag_sponsor{
-    position:absolute;
-    bottom:0;
-    left:25%;
-    width:50%;
-    opacity:.7;
-    height:25px;
+    width:40%;
+    height:50px;
     margin:0 auto;
 }
 .tag_sponsor img{

@@ -51,21 +51,21 @@
                         // echo "<img src='../controller/barcode.php?codetype=code128&size=200&text=".$slip->barcode."'/>";
                         require '../vendor/autoload.php';
 
-// This will output the barcode as HTML output to display in the browser
-$generator = new Picqer\Barcode\BarcodeGeneratorHTML();
-echo $generator->getBarcode($slip->barcode, $generator::TYPE_CODE_128);
+                        // This will output the barcode as HTML output to display in the browser
+                        $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+                        echo $generator->getBarcode($slip->barcode, $generator::TYPE_CODE_128);
                     ?>
                 <!-- <h4 class="barcode"><?php echo $slip->barcode?></h4> -->
                 </div>
-                <div class="tag_sponsor">
-                <img src="../images/mega_logo.jpg" alt="mega" class="mega">
+                
 
-            </div>
                 
             </div>
         </div>
 
-
+        <div class="tag_sponsor">
+                <img src="../images/mega_logo.jpg" alt="mega" class="mega">
+        </div>
     </section>
     <?php endforeach?>
 </div>

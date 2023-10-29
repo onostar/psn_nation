@@ -21,7 +21,7 @@
             <li><a href="javascript:void(0);" id="addStore" class="page_navs" data-page="addRestaurant" onclick="showPage('delegates.php')"><i class="fas fa-user-tie"></i> Delegates</a></li>
             <?php }?>
             <li><a href="javascript:void(0)" title="Validate user" onclick="showPage('onsite_validation.php')"><i class="fas fa-users"></i> Onsite validation</a></li>
-            <!-- <li><a href="javascript:void(0)" title="Register user" onclick="showPage('onsite_registration.php')"><i class="fas fa-user"></i> Onsite Registration</a></li> -->
+            <li><a href="javascript:void(0)" onclick="showPage('approve_guest.php')"id="appPay" class="page_navs" title="Approve payment"><i class="fas fa-users"></i> Approve Guests</a></li>
             <?php if($last_name == "Admin"){?>
             <li><a href="javascript:void(0)" title="Conference attendance list" class="page_navs" data-page="attendance_list" onclick="showPage('attendance_list.php')"><i class="fas fa-user-graduate"></i> Attendance List</a></li>
             

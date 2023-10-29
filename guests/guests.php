@@ -258,7 +258,7 @@
         <div class="payment_summary">
             <div class="sum_title">
                 <img src="../images/conference_logo.png" alt="Logo">
-                <h3>Jewel city 2023 Regitsration Summary</h3>
+                <h3>Jewel city 2023 Registration Summary</h3>
             </div>
             <h2>Transaction details</h2>
             <table id="payment_table">
@@ -302,7 +302,7 @@
                 </tbody>
             </table>
             <div class="proceed_btn">
-                <button onclick="vpay('<?php echo $user->fee?>', '<?php echo $user->user_id?>', '<?php echo $user->user_email?>')">Proceed to payment <i class="fas fa-angle-double-right"></i></button>
+                <button onclick="onsiteVpay('<?php echo $user->fee?>', '<?php echo $user->user_id?>', '<?php echo $user->user_email?>')">Proceed to payment <i class="fas fa-angle-double-right"></i></button>
             </div>
         </div>
     </div>

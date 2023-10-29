@@ -40,30 +40,33 @@
                 }
             }
         }else{
+            //closed registration
+            $_SESSION['error'] = "Pharmacist not found!<br>Registration closed";
+            header("Location: ../views/registration.php");
             /* check payment table */
-            $get_payment = $connectdb->prepare("SELECT * FROM paid_members WHERE pcn_number = :pcn_number");
+            /* $get_payment = $connectdb->prepare("SELECT * FROM paid_members WHERE pcn_number = :pcn_number");
             $get_payment->bindvalue("pcn_number", $pcn);
             // $get_payment->bindvalue("last_name", $username);
             $get_payment->execute();
             if($get_payment->rowCount() > 0){
-                /* copy details into users table */
-                $insert_user = $connectdb->prepare("INSERT INTO users (last_name, first_name, pcn_number, whatsapp, res_state, user_email, gender, fellow) SELECT last_name, first_name, pcn_number, whatsapp, res_state, user_email, gender, fellow FROM paid_members WHERE pcn_number = :pcn_number");
+                // copy details into users table
+                 $insert_user = $connectdb->prepare("INSERT INTO users (last_name, first_name, pcn_number, whatsapp, res_state, user_email, gender, fellow) SELECT last_name, first_name, pcn_number, whatsapp, res_state, user_email, gender, fellow FROM paid_members WHERE pcn_number = :pcn_number");
                 $insert_user->bindvalue("pcn_number", $pcn);
                 $insert_user->execute();
                 if($insert_user){
                     $_SESSION['user'] = $pcn;
-                    /* update new user reg_number */
-                    /* get new user id */
+                    // update new user reg_number
+                    // get new user id
                     $id = $connectdb->lastInsertId();
-                    /* get new user detail */
+                    // get new user detail
                     $get_state = $connectdb->prepare("SELECT res_state FROM users WHERE user_id = :user_id");
                     $get_state->bindvalue("user_id", $id);
                     $get_state->execute();
                     $view = $get_state->fetch();
                     $state = $view->res_state;
-                    /* get state_id */
+                    // get state_id
                     
-                    /* set reg number */
+                    // set reg number
                     $code = strtoupper(substr($state, 0, 3));
                     $cur_time = Date("Y");
                     $reg_number = $code."/".$cur_time ."/00";
@@ -72,20 +75,20 @@
                     $update_reg->bindvalue("reg_number", $new_reg);
                     $update_reg->bindvalue("pcn_number", $pcn);
                     $update_reg->execute();
-                    /* update payment_status */
+                    // update payment_status
                     $update_payment = $connectdb->prepare("UPDATE users SET payment_status = 2 WHERE pcn_number = :pcn_number");
                     $update_payment->bindvalue("pcn_number", $pcn);
                     $update_payment->execute();
                     $_SESSION['reg_success'] = "Your Login is successful, Your username is your surname! \r\n While Your password is your PCN number! \r\n ";
                     // $_SESSION['upload'] = "Kindly confirm your details below and upload your passport";
-                    /* header("Location: ../views/user.php"); */
+                    // header("Location: ../views/user.php");
                     header("Location: ../views/welcome_page.php");
                 }else{
                     $_SESSION['error'] = "Insert failed!";
                     header("Location: ../views/registration.php");
                 }
             }else{
-                /* check pharmagateway */
+                // check pharmagateway
                 // Initiate curl session in a variable (resource)
                 $new_pcn = "$pcn";
                 $curl_handle = curl_init();
@@ -142,24 +145,24 @@
                     $data->execute();
                     //YOU CAN CHECK IF INSERT IS SUCCESSFUL;
                     if($data){
-                        /* copy details into users table */
+                        // copy details into users table
                         $insert_new_user = $connectdb->prepare("INSERT INTO users (last_name, first_name, pcn_number, whatsapp, res_state, user_email, gender, fellow) SELECT last_name, first_name, pcn_number, whatsapp, res_state, user_email, gender, fellow FROM paid_members WHERE pcn_number = :pcn_number");
                         $insert_new_user->bindvalue("pcn_number", $pcn);
                         $insert_new_user->execute();
                         if($insert_new_user){
                             $_SESSION['user'] = $pcn;
-                            /* update new user reg_number */
-                            /* get new user id */
+                            // update new user reg_number
+                            // get new user id
                             $new_id = $connectdb->lastInsertId();
-                            /* get new user detail */
+                            //get new user detail
                             $get_new_state = $connectdb->prepare("SELECT res_state FROM users WHERE user_id = :user_id");
                             $get_new_state->bindvalue("user_id", $new_id);
                             $get_new_state->execute();
                             $new_view = $get_new_state->fetch();
                             $new_state = $new_view->res_state;
-                            /* get state_id */
+                            //get state_id 
                             
-                            /* set reg number */
+                            //set reg number
                             $scode = strtoupper(substr($new_state, 0, 3));
                             $scur_time = Date("Y");
                             $sreg_number = $scode."/".$scur_time ."/00";
@@ -168,13 +171,11 @@
                             $supdate_reg->bindvalue("reg_number", $snew_reg);
                             $supdate_reg->bindvalue("pcn_number", $pcn);
                             $supdate_reg->execute();
-                            /* update payment_status */
+                            // update payment_status
                             $supdate_payment = $connectdb->prepare("UPDATE users SET payment_status = 2 WHERE pcn_number = :pcn_number");
                             $supdate_payment->bindvalue("pcn_number", $pcn);
                             $supdate_payment->execute();
                             $_SESSION['reg_success'] = "Your Login is successful, Your username is your surname! \r\n While Your password is your PCN number! \r\n ";
-                            // $_SESSION['upload'] = "Kindly confirm your details below and upload your passport";
-                            /* header("Location: ../views/user.php"); */
                             header("Location: ../views/welcome_page.php");
                         }
                     }else{
@@ -183,7 +184,7 @@
                     }
                 }
                 
-            }
+            }*/
         }
 
     }

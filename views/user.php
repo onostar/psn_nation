@@ -235,6 +235,8 @@
     </main>
     <script src="../jquery.js"></script>
     <script src="../script.js"></script>
+    <script src="https://dropin.vpay.africa/dropin/v1/initialise.js"></script>
+
     <script>
         //hide success or error message after 2 seconds
         setTimeout(function(){
@@ -244,7 +246,73 @@
             $("#reg_success").hide();
         }, 3000);
     </script>
-    
+    <?php
+        if($user->payment_status == 0){
+            //display payment summary
+            //get guest type
+            $find_types = $connectdb->prepare("SELECT guest_type FROM guest_types WHERE guest_type_id = :guest_type_id");
+            $find_types->bindvalue("guest_type_id", $user->guest_type);
+            $find_types->execute();
+            $gtype = $find_types->fetch();
+    ?>
+    <div id="payment_summary">
+        <div class="payment_summary">
+            <div class="sum_title">
+                <img src="../images/conference_logo.png" alt="Logo">
+                <h3>Jewel city 2023 Registration Summary</h3>
+            </div>
+            <h2>Transaction details</h2>
+            <table id="payment_table">
+                <thead>
+                    <tr>
+                        <td>S/N</td>
+                        <td>Item</td>
+                        <td>Description</td>
+                        <td>Amount</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align:center; color:red">1</td>
+                        <td>Conference fee</td>
+                        <td>PSN jewel city registration fee for <?php echo $gtype->guest_type?> participants</td>
+                        <td><?php echo "₦".number_format($user->fee, 2);?></td>
+                            
+                    </tr>
+                    <tr>
+                        <td style="text-align:center; color:red">2</td>
+                        <td>Charges</td>
+                        <td>Switch fee + other charges (3%)</td>
+                        <td><?php 
+                            $charges = $user->fee * 0.03;
+                            echo "₦".number_format($charges, 2);
+                        ?></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td style="font-weight:bold">Total amount due:</td>
+                        <td style="color:green; font-weight:bold">
+                            <?php
+                                //get total
+                                $total_due = $charges + $user->fee;
+                                echo "₦".number_format($total_due, 2);
+                            ?>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="proceed_btn">
+                <button onclick="onsiteVpay('<?php echo $user->fee?>', '<?php echo $user->user_id?>', '<?php echo $user->user_email?>')">Proceed to payment <i class="fas fa-angle-double-right"></i></button>
+            </div>
+        </div>
+    </div>
+    <?php
+           /*  echo "<script>
+                vpay('$user->fee', '$user->user_id', '$user->user_email');
+            </script>"; */
+        }
+    ?>
 </body>
 </html>
 

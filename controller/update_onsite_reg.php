@@ -1,10 +1,10 @@
 <?php
     include "connections.php";
-    session_start();
 
-    if(isset($_GET['guest'])){
+    // if(isset($_GET['user'])){
 
-        $guest = $_GET['guest'];
+        $guest = $_GET['user'];
+        $trans_ref = $_GET['transref'];
         //get user details
         $get_details = $connectdb->prepare("SELECT * FROM users WHERE user_id = :user_id");
         $get_details->bindValue("user_id", $guest);
@@ -35,21 +35,19 @@
             $reg_number = "GUEST/.$cur_time" ."/00".$guest;
         }
         //update status
-        $update = $connectdb->prepare("UPDATE users SET payment_status = 2, barcode =:barcode, reg_number = :reg_number WHERE user_id = :user_id");
+        $update = $connectdb->prepare("UPDATE users SET payment_status = 2, transaction_num = :transaction_num, barcode =:barcode, reg_number = :reg_number WHERE user_id = :user_id");
         $update->bindValue("user_id", $guest);
+        $update->bindValue("transaction_num", $trans_ref);
         $update->bindValue("barcode", $barcode);
         $update->bindValue("reg_number", $reg_number);
         $update->execute();
-
-            if($update){
-                
-                echo "<div class='success'><p>Guest payment confirmed!</p></div>";
-                // header("Location: ../views/admin.php");
+        if($update){
+            if($guest_type == 6){
+                header("Location: ../views/user.php");
             }else{
-                echo "<div class='error_message'><p>Failed to confirm payment!</p></div>";
-                // header("Location: ../views/admin.php");
+                header("Location: ../guests/guests.php");
+
             }
         }
-        
     // }
 ?>

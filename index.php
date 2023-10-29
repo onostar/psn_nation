@@ -48,6 +48,7 @@
                     <!-- <li><a href="blog.html" title="Job recruitment">Our Blog</a></li> -->
                     <li id="exhi"><a href="views/registration.php" title="Members Portal">Delegate Login <i class="fas fa-sign-in-alt"></i></a></li>
                     <li id="login"><a href="guests/guest_login.php" title="Guests portal">Guests Login <i class="fas fa-sign-in-alt"></i></a></li>
+                    <li style="background:var(--otherColor); padding:15px;"><a href="views/onsite_registration.php" title="Onsite registration">Onsite Registration <i class="fas fa-sign-in-alt"></i></a></li>
                     <!-- <li><a href="views/late_registration.php" title="Late registration for Delegate">Delegate Registration <i class="fas fa-sign-in-alt"></i></a></li>
                     <li><a href="guests/late_registration.php" title="Late registration for Guests">Guests Registration <i class="fas fa-sign-in-alt"></i></a></li> -->
                 </ul>
@@ -62,12 +63,13 @@
                     </div>
                     <div class="taglines">
                         <div class="taglines_note">
-                            <h2>PSN Jewel city 2023 Conference</h2>
-                            <p>Kicking off 30th October to November 4th 2023, at the Gombe International Conference Centre, Gombe</p>
+                            <!-- <h2>PSN Jewel city 2023 Conference</h2>
+                            <p>Kicking off 30th October to November 4th 2023, at the Gombe International Conference Centre, Gombe</p> -->
                             <div class="btns">
                                 <!-- <a href="javascript:void(0)" class="showRequest">Schedule an Appointment Now</a> -->
                                 <a href="guests/guest_login.php" title="Guests portal" style="background:var(--primaryColor)">Guests Login <i class="fas fa-sign-in-alt"></i></a>
-                                <a href="views/registration.php">Delegates <i class="fas fa-sign-in-alt"></i></a>
+                                <a href="views/registration.php" style="background:var(--otherColor); padding:15px;">Delegates <i class="fas fa-sign-in-alt"></i></a>
+                                <a href="views/onsite_registration.php">Onsite Registration <i class="fas fa-sign-in-alt"></i></a>
                             </div>
                         </div>
                         <div class="taglines_mission">

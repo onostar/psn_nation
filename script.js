@@ -597,7 +597,7 @@ function approveGuest(user_id){
             }
         })
         setTimeout(function(){
-            $("#confirmGuest").load("confirm_guest.php #confirmGuest");
+            $("#confirmGuest").load("approve_guest.php #confirmGuest");
         }, 2000);
         return false;
     }
@@ -1249,10 +1249,21 @@ function printExhTag(ehxibitor){
 function getGuestFee(guest){
     let guest_type = guest;
     let country = document.getElementById("country");
+    pcn = document.getElementById("pcn_number");
     if(guest_type){
     // alert(user_hotel);
         if(guest_type != 4){
             country.innerHTML = "<option value='Nigeria'>Nigeria</option>";
+        }
+        if(guest_type == 6){
+            pcn.type = "text";
+            document.querySelector("#guest_password label").style.display = "none";
+            document.getElementById("user_password").type = "hidden";
+
+        }else{
+            pcn.type = "hidden";
+            document.querySelector("#guest_password label").style.display = "block";
+            document.getElementById("user_password").type = "password";
         }
         $.ajax({
             type : "POST",
@@ -1267,7 +1278,6 @@ function getGuestFee(guest){
         return;
     }
 }
-
 //print guest tag
 function printGuestTag(guest_id){
     window.open("../controller/print_guest_tag.php?guest="+guest_id);
@@ -1342,6 +1352,36 @@ response.message); }
         const {open, exit} = VPayDropin.create(options);
         open();                    
     }                
+};
+// onsite vpay integration
+function onsiteVpay(fee, user, user_email){
+     transNum = generateString(10)+user
+    const options = {
+        amount: fee,
+        currency: 'NGN',
+        domain: 'live',
+        key: '28e4f709-f24a-4903-b7a2-2f0434aee8ea',
+        
+email: user_email,
+        transactionref: transNum,
+        customer_logo:
+'https://www.vpay.africa/static/media/vpayLogo.91e11322.svg',
+        customer_service_channel: '+2348030007000, support@psnconference.org',
+        txn_charge: 3,
+        txn_charge_type: 'percentage',
+        onSuccess: function(response) { alert('Payment Successful!',
+response.message); 
+        window.open("../controller/update_onsite_reg.php?user="+user+"&transref="+transNum, "_parent")
+        return;
+},
+        onExit: function(response) { console.log('Hello World!',
+response.message); }
+    }
+    
+    if(window.VPayDropin){
+        const {open, exit} = VPayDropin.create(options);
+        open();                    
+    }
 };
 
 //submit survey form to data base

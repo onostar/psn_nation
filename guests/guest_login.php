@@ -61,9 +61,9 @@
                         </div>
                         
                     </form>
-                    <div class="signup_option">
+                    <!-- <div class="signup_option">
                         <p>Don't have an account yet? <a href="guest_registration.php">Signup now</a></p>
-                    </div>
+                    </div> -->
                     <div id="foot">
                         <p >&copy;<?php echo Date("Y");?> PSN. All Rights Reserved.</p>
 
