@@ -116,12 +116,14 @@
                         <i class="fas fa-certificate"></i>
                     </div>
                 <div class="signatories">
-                    <div class="sign">
+                <div class="sign">
+                        <img src="../images/president_sign.png">
                         <p>Prof. <span>Cyril Odianose Usifoh,</span>FPSN</p>
                         <p class="title">President</p>
                     </div>
                     
                     <div class="sign">
+                        <img src="../images/secretary_sign.jpg">
                         <p>Pharm. <span>Gbenga Falabi,</span>FPSN</p>
                         <p class="title">National Secretary</p>
                     </div>

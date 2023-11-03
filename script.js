@@ -585,7 +585,7 @@ function declineBulk(req_id){
     }
 }
 
-/* approve guest payments */
+/* approve onsite guest payments */
 function approveGuest(user_id){
     let approve = confirm("Do you want to confirm this payment?", "");
     if(approve){
@@ -598,6 +598,23 @@ function approveGuest(user_id){
         })
         setTimeout(function(){
             $("#confirmGuest").load("approve_guest.php #confirmGuest");
+        }, 2000);
+        return false;
+    }
+}
+/* approve guest payments */
+function approvePaidGuest(user_id){
+    let approve = confirm("Do you want to confirm this payment?", "");
+    if(approve){
+        $.ajax({
+            type : "GET",
+            url : "../controller/approve_paid_guest.php?guest="+user_id,
+            success : function(response){
+                $("#confirmGuest").html(response);
+            }
+        })
+        setTimeout(function(){
+            $("#confirmGuest").load("approve_paid_guests.php #confirmGuest");
         }, 2000);
         return false;
     }
